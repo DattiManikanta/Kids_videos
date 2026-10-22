@@ -1609,7 +1609,7 @@ class KidsCanvasEngine {
     // Letter
     ctx.fillStyle = color2;
     ctx.shadowColor = 'transparent';
-    ctx.font = \`bold 125px "\${fontFam}", "Fredoka", sans-serif\`;
+    ctx.font = `bold 125px "${fontFam}", "Fredoka", sans-serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillText(letter, 0, -8);

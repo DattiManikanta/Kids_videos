@@ -2712,6 +2712,11 @@ function generateCustomEpisode(topic, category, lang = 'te') {
   };
 }
 
+if (typeof window !== 'undefined') {
+  window.KIDS_CONTENT_LIBRARY = KIDS_CONTENT_LIBRARY;
+  window.generateCustomEpisode = generateCustomEpisode;
+}
+
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { 
     KIDS_CONTENT_LIBRARY, 
