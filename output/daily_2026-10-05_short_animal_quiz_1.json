@@ -1,0 +1,73 @@
+{
+  "channel": "@manikantadatti6150",
+  "channelUrl": "https://www.youtube.com/@manikantadatti6150",
+  "generatedAt": "2026-10-05T06:18:55.272Z",
+  "day": "Monday",
+  "category": "shorts",
+  "aspectRatio": "9:16",
+  "durationSec": 25,
+  "targetAge": "2-5 years",
+  "title": "Who Makes This Sound? 🦁 Fun Animal Quiz for Toddlers! #Shorts #KidsLearning",
+  "description": "Can you guess which friendly animal is making this sound? Test your toddler with this fun animal sound riddle! Subscribe for daily kids shorts! 🌟\n\n#kidsshorts #animalsounds #toddlerlearning #preschoolfun #youtubekids\n\n👉 Subscribe to @manikantadatti6150 for daily kids magic!\nhttps://www.youtube.com/@manikantadatti6150",
+  "tags": [
+    "kids shorts",
+    "animal sounds",
+    "toddler learning",
+    "guess the animal",
+    "fun for kids",
+    "preschool learning",
+    "nursery",
+    "manikantadatti6150"
+  ],
+  "coppaMadeForKids": true,
+  "scenesCount": 5,
+  "scenes": [
+    {
+      "duration": 4.5,
+      "heading": "🦁 GUESS THE ANIMAL!",
+      "narration": "Hello Little Explorers! Listen carefully. Who makes this super loud sound?",
+      "soundEffect": "drum_roll",
+      "character": "question_mark",
+      "characterAction": "wobble",
+      "bgOverlay": "stars",
+      "subtitles": "Can you guess who makes this sound?"
+    },
+    {
+      "duration": 4.5,
+      "heading": "🔊 LISTEN CLOSELY...",
+      "narration": "ROOAAR! ROOAAR! Did you hear that? Who has a golden mane and says ROAR?",
+      "soundEffect": "lion_roar",
+      "character": "shadow_lion",
+      "characterAction": "pulse",
+      "subtitles": "ROOAAR! Who says ROAR?"
+    },
+    {
+      "duration": 5,
+      "heading": "⏰ 3... 2... 1...",
+      "narration": "Counting down! Three! Two! One! Say it with me!",
+      "soundEffect": "countdown_ticks",
+      "character": "timer_clock",
+      "characterAction": "tick",
+      "subtitles": "3... 2... 1... What's your answer?"
+    },
+    {
+      "duration": 6,
+      "heading": "🎉 IT'S A LION! 🦁",
+      "narration": "It's Leo the King of the Jungle! A brave and happy lion! Great job, little superstar!",
+      "soundEffect": "cheer_fanfare",
+      "character": "happy_lion",
+      "characterAction": "jump_celebrate",
+      "confetti": true,
+      "subtitles": "Yay! It's Leo the friendly Lion! 🌟"
+    },
+    {
+      "duration": 5,
+      "heading": "🌟 SUBSCRIBE FOR MORE!",
+      "narration": "Tap the subscribe button to meet more animal friends tomorrow! Bye bye!",
+      "soundEffect": "chime_sparkle",
+      "character": "subscribe_bell",
+      "characterAction": "bounce",
+      "subtitles": "Subscribe for more fun animal games! 🎈"
+    }
+  ]
+}

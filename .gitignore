@@ -1,0 +1,13 @@
+# Sensitive OAuth Credentials & Tokens
+client_secret.json
+token.json
+
+# Large video output exports
+output/*.webm
+output/*.mp4
+
+# OS and temporary files
+.DS_Store
+Thumbs.db
+*.log
+node_modules/

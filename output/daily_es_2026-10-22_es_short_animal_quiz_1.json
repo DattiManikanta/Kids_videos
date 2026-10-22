@@ -1,0 +1,74 @@
+{
+  "channel": "@manikantadatti6150",
+  "channelUrl": "https://www.youtube.com/@manikantadatti6150",
+  "language": "es",
+  "generatedAt": "2026-10-22T07:40:55.846Z",
+  "day": "Thursday",
+  "category": "shorts",
+  "aspectRatio": "9:16",
+  "durationSec": 25,
+  "targetAge": "2-6 years",
+  "title": "¿Quién Hace Este Sonido? 🦁 Adivina el Animal para Niños #Shorts",
+  "description": "¡Hola pequeños exploradores! ¿Puedes adivinar qué animal hace este rugido tan fuerte? ¡Suscríbete para más videos infantiles diarios! 🌟\n\n#videosparaniños #sonidosdeanimales #adivinanzas #ytshorts #aprendeconmigo\n\n👉 Subscribe to @manikantadatti6150 for daily kids magic:\nhttps://www.youtube.com/@manikantadatti6150\n\n#kids #cartoons #animation #rhymes #shorts",
+  "tags": [
+    "videos para niños",
+    "sonidos de animales",
+    "el rey leon",
+    "adivinanzas infantiles",
+    "canciones infantiles",
+    "manikantadatti6150",
+    "@manikantadatti6150",
+    "es kids"
+  ],
+  "coppaMadeForKids": true,
+  "scenesCount": 5,
+  "scenes": [
+    {
+      "duration": 4.5,
+      "heading": "🦁 ¡ADIVINA EL ANIMAL!",
+      "narration": "¡Hola amiguitos! Escuchen con mucha atención. ¿Quién hace este rugido tan fuerte?",
+      "soundEffect": "drum_roll",
+      "character": "question_mark",
+      "characterAction": "wobble",
+      "bgOverlay": "stars",
+      "subtitles": "🦁 ¿Puedes adivinar quién hace este sonido?"
+    },
+    {
+      "duration": 4.5,
+      "heading": "🔊 ESCUCHA DE CERCA...",
+      "narration": "¡ROAAR! ¡ROAAR! ¿Lo escucharon? ¿Quién tiene una melena dorada y ruge fuerte?",
+      "soundEffect": "lion_roar",
+      "character": "shadow_lion",
+      "characterAction": "pulse",
+      "subtitles": "🔊 ¡ROAAR! ¿Quién ruge así en la selva?"
+    },
+    {
+      "duration": 5,
+      "heading": "⏰ 3... 2... 1...",
+      "narration": "¡Cuenta regresiva! ¡Tres! ¡Dos! ¡Uno! ¿Cuál es tu respuesta?",
+      "soundEffect": "countdown_ticks",
+      "character": "timer_clock",
+      "characterAction": "tick",
+      "subtitles": "⏰ 3... 2... 1... ¿Cuál es tu respuesta?"
+    },
+    {
+      "duration": 6,
+      "heading": "🎉 ¡ES UN LEÓN! 🦁",
+      "narration": "¡Muy bien! ¡Es el rey de la selva, el valiente y alegre león! ¡Excelente trabajo pequeños campeones!",
+      "soundEffect": "cheer_fanfare",
+      "character": "happy_lion",
+      "characterAction": "jump_celebrate",
+      "confetti": true,
+      "subtitles": "🎉 ¡Es el simpático León! 🦁 ¡Buen trabajo!"
+    },
+    {
+      "duration": 5,
+      "heading": "🌟 ¡SUSCRÍBETE!",
+      "narration": "¡Toca el botón rojo de suscribirse para conocer nuevos amigos animales mañana! ¡Adiós!",
+      "soundEffect": "chime_sparkle",
+      "character": "subscribe_bell",
+      "characterAction": "bounce",
+      "subtitles": "🌟 ¡Suscríbete para más diversión diaria! 🎈"
+    }
+  ]
+}

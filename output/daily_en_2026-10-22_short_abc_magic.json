@@ -1,0 +1,74 @@
+{
+  "channel": "@manikantadatti6150",
+  "channelUrl": "https://www.youtube.com/@manikantadatti6150",
+  "language": "en",
+  "generatedAt": "2026-10-22T07:40:55.846Z",
+  "day": "Thursday",
+  "category": "shorts",
+  "aspectRatio": "9:16",
+  "durationSec": 24,
+  "targetAge": "2-4 years",
+  "title": "Letter A Phonics Fun! 🍎 A is for Apple & Alligator #Shorts #ABCPhonics",
+  "description": "Learn the letter A with sweet apples and smiling alligators! Phonics learning for toddlers and preschoolers. Like & Subscribe for Letter B! 🚀\n\n#abc #phonics #letterA #toddlers #learnalphabet #shorts\n\n👉 Subscribe to @manikantadatti6150 for daily kids magic:\nhttps://www.youtube.com/@manikantadatti6150\n\n#kids #cartoons #animation #rhymes #shorts",
+  "tags": [
+    "letter a",
+    "abc song",
+    "phonics for kids",
+    "alphabet learning",
+    "preschool abc",
+    "kids shorts",
+    "manikantadatti6150",
+    "@manikantadatti6150",
+    "en kids"
+  ],
+  "coppaMadeForKids": true,
+  "scenesCount": 5,
+  "scenes": [
+    {
+      "duration": 4.5,
+      "heading": "✨ LETTER OF THE DAY ✨",
+      "narration": "Look up in the sky! It's the very first letter of the alphabet! The Letter A!",
+      "soundEffect": "magic_wand",
+      "character": "letter_A",
+      "characterAction": "spin_glow",
+      "subtitles": "Welcome to Letter A Magic!"
+    },
+    {
+      "duration": 5,
+      "heading": "🍎 A IS FOR APPLE!",
+      "narration": "A says Ah, Ah, Apple! Big, red, and juicy! Take a bite! Munch munch munch!",
+      "soundEffect": "bite_crunch",
+      "character": "shiny_apple",
+      "characterAction": "bounce",
+      "subtitles": "Ah - Ah - Apple! 🍎 So yummy!"
+    },
+    {
+      "duration": 5,
+      "heading": "🐊 A IS FOR ALLIGATOR!",
+      "narration": "A says Ah, Ah, Alligator! Chomping happily with a friendly smile! Chomp chomp!",
+      "soundEffect": "water_splash",
+      "character": "cute_alligator",
+      "characterAction": "chomp",
+      "subtitles": "Ah - Ah - Alligator! 🐊 Chomp chomp!"
+    },
+    {
+      "duration": 5,
+      "heading": "🌟 YOU DID IT!",
+      "narration": "You learned Letter A! Can you find something around you that starts with A? You are so smart!",
+      "soundEffect": "cheer_fanfare",
+      "character": "golden_star",
+      "characterAction": "twinkle",
+      "confetti": true,
+      "subtitles": "Super Job! You know Letter A! 🏆"
+    },
+    {
+      "duration": 4.5,
+      "heading": "❤️ LIKE & SUBSCRIBE!",
+      "narration": "Subscribe now to learn Letter B next! See you tomorrow, friend!",
+      "soundEffect": "chime_sparkle",
+      "character": "subscribe_bell",
+      "characterAction": "bounce",
+      "subtitles": "Subscribe for Letter B tomorrow! 🎈"
+    }
+  ]
+}

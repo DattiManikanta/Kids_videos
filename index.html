@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TinyToons Studio | Automated Kids Video & YouTube Creator</title>
+  <meta name="description" content="Automated creation and publishing studio for YouTube Kids Shorts, Bedtime Stories, and Nursery Rhymes.">
+  <!-- Google Fonts: Fredoka, Poppins, and Telugu Fonts (Noto Sans Telugu, Ramabhadra, Mandali) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Mandali&family=Noto+Sans+Telugu:wght@400;600;700;800&family=Poppins:wght@400;600;700;800&family=Ramabhadra&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Floating Sparkles & Clouds -->
+  <div class="cloud cloud-1">☁️</div>
+  <div class="cloud cloud-2">☁️</div>
+
+  <!-- Top App Navigation -->
+  <header class="app-header">
+    <div class="header-content">
+      <div class="brand">
+        <span class="brand-icon">🌟</span>
+        <div class="brand-text">
+          <h1 id="appTitle">TinyToons Studio <span class="badge-lang-tag">English</span></h1>
+          <p id="appTagline" class="tagline">Automated Multi-Language Kids Video & Daily YouTube Channel Hub</p>
+        </div>
+      </div>
+
+      <!-- Language Switcher Pill (6 Languages for Video Content) -->
+      <div class="lang-switch-box">
+        <label class="lang-label">🌐 Video Language:</label>
+        <div class="lang-pill-group">
+          <button id="langBtnEn" class="lang-pill active" data-lang="en" title="English Content & Voice">
+            🇬🇧 English
+          </button>
+          <button id="langBtnTe" class="lang-pill" data-lang="te" title="Telugu Content & Voice (తెలుగు)">
+            🇮🇳 Telugu
+          </button>
+          <button id="langBtnHi" class="lang-pill" data-lang="hi" title="Hindi Content & Voice (हिन्दी)">
+            🇮🇳 Hindi
+          </button>
+          <button id="langBtnTa" class="lang-pill" data-lang="ta" title="Tamil Content & Voice (தமிழ்)">
+            🇮🇳 Tamil
+          </button>
+          <button id="langBtnKn" class="lang-pill" data-lang="kn" title="Kannada Content & Voice (ಕನ್ನಡ)">
+            🇮🇳 Kannada
+          </button>
+          <button id="langBtnEs" class="lang-pill" data-lang="es" title="Spanish Content & Voice (Español)">
+            🇪🇸 Spanish
+          </button>
+        </div>
+      </div>
+
+      <div class="header-badges">
+        <button id="autoPublishTodayBtn" class="btn-autopublish" title="1-Click Auto-Produce & Upload Today's Video">
+          <span class="pulse-fire">⚡</span> 1-Click Auto-Publish
+        </button>
+        <a href="https://www.youtube.com/@manikantadatti6150" target="_blank" class="badge badge-channel" title="Open YouTube Channel">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 4px;"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          @manikantadatti6150
+        </a>
+        <span class="badge badge-shorts">📱 Shorts</span>
+        <span class="badge badge-stories">🌙 Stories</span>
+        <span class="badge badge-rhymes">🎵 Rhymes</span>
+        <div class="badge badge-scheduler">
+          <span class="pulse-dot"></span> Daily Auto-Schedule
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Workspace Layout -->
+  <main class="main-container">
+    
+    <!-- LEFT COLUMN: LIVE VIDEO STUDIO & RENDER VIEWPORT -->
+    <section class="studio-section">
+      <div class="section-card studio-card">
+        
+        <div class="studio-topbar">
+          <div class="current-info">
+            <span class="status-indicator">● LIVE PREVIEW</span>
+            <span id="currentSceneText" class="scene-title">Scene 1: Loading...</span>
+          </div>
+          <div class="progress-container">
+            <div id="sceneProgressBar" class="progress-bar" style="width: 20%;"></div>
+          </div>
+        </div>
+
+        <!-- Canvas Viewport -->
+        <div class="canvas-wrapper">
+          <div class="canvas-viewport shorts">
+            <canvas id="previewCanvas" width="1080" height="1920"></canvas>
+          </div>
+        </div>
+
+        <!-- Timeline Stepper -->
+        <div class="timeline-container">
+          <label class="timeline-label">Episode Scenes:</label>
+          <div id="sceneTimeline" class="scene-timeline">
+            <!-- Chips inserted dynamically -->
+          </div>
+        </div>
+
+        <!-- Studio Controls -->
+        <div class="studio-controls">
+          <button id="playBtn" class="btn btn-primary" title="Play animated episode">
+            <span class="btn-icon">▶️</span> <span id="playBtnText">Play Episode</span>
+          </button>
+          <button id="pauseBtn" class="btn btn-secondary" style="display: none;" title="Pause playback">
+            <span class="btn-icon">⏸️</span> <span id="pauseBtnText">Pause</span>
+          </button>
+          <button id="recordBtn" class="btn btn-record" title="Record and export high quality video">
+            <span class="btn-icon">⏺️</span> <span id="recordBtnText">Record & Export Video</span>
+          </button>
+        </div>
+
+        <!-- Voice Selection Bar -->
+        <div class="voice-settings-bar">
+          <div class="voice-picker-wrap">
+            <label for="voiceSelect" class="voice-label">🗣️ Voice Narration:</label>
+            <select id="voiceSelect" class="styled-select-voice">
+              <option value="auto">🔄 Auto Detect Voice</option>
+            </select>
+          </div>
+          <button id="testVoiceBtn" class="btn btn-tiny" title="Test voice narration">
+            🔊 Test Voice
+          </button>
+        </div>
+
+        <!-- Export & Recording Status Banner -->
+        <div id="recordStatus" class="record-status-box" style="display: none;">
+          <div class="recording-animation">
+            <span class="rec-dot"></span>
+            <span id="exportProgress">Recording in progress...</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- RIGHT COLUMN: CONTENT PICKER, AI SCRIPT MAKER & YOUTUBE PUBLISHER -->
+    <aside class="control-panel">
+      
+      <!-- 1. CATEGORY & EPISODE SELECTOR -->
+      <div class="section-card">
+        <h2 id="catSectionTitle" class="card-title">🎯 1. Select Content Category</h2>
+        <div class="category-tabs">
+          <button class="category-tab active" data-category="shorts">
+            <span class="tab-emoji">📱</span>
+            <div class="tab-text">
+              <strong id="tabShortsTitle">Shorts & Riddles</strong>
+              <small id="tabShortsDesc">Animal sounds, ABCs, 123s (9:16)</small>
+            </div>
+          </button>
+          <button class="category-tab" data-category="stories">
+            <span class="tab-emoji">🌙</span>
+            <div class="tab-text">
+              <strong id="tabStoriesTitle">Bedtime Stories</strong>
+              <small id="tabStoriesDesc">Moral tales, sweet dreams (16:9)</small>
+            </div>
+          </button>
+          <button class="category-tab" data-category="rhymes">
+            <span class="tab-emoji">🎵</span>
+            <div class="tab-text">
+              <strong id="tabRhymesTitle">Nursery Rhymes</strong>
+              <small id="tabRhymesDesc">Sing-along karaoke songs</small>
+            </div>
+          </button>
+        </div>
+
+        <div class="form-group" style="margin-top: 15px;">
+          <label id="chooseEpisodeLabel" for="episodeSelect">Choose Preset Episode:</label>
+          <select id="episodeSelect" class="styled-select">
+            <!-- Populated via JS -->
+          </select>
+        </div>
+      </div>
+
+      <!-- 2. AI SCRIPT GENERATOR -->
+      <div class="section-card">
+        <h2 id="aiSectionTitle" class="card-title">✨ 2. AI Custom Episode Maker</h2>
+        <p id="aiSectionSubtitle" class="card-subtitle">Generate an animated 5-scene story or riddle on any kids topic:</p>
+        
+        <div class="custom-generator-form">
+          <div class="form-row">
+            <input type="text" id="customTopicInput" class="styled-input" placeholder="e.g. Baby Elephant taking a bath, Colorful Balloons, Fruit Names...">
+            <select id="customCategorySelect" class="styled-select-compact">
+              <option value="shorts">YouTube Short (9:16)</option>
+              <option value="stories">Storybook Bedtime Tale (16:9)</option>
+              <option value="rhymes">Kids Rhyme & Song</option>
+            </select>
+          </div>
+          <button id="generateCustomBtn" class="btn btn-magic">
+            <span id="generateCustomBtnText">🪄 Generate Animated Episode</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 3. YOUTUBE AUTOMATION & METADATA -->
+      <div class="section-card">
+        <div class="card-header-flex">
+          <h2 class="card-title">🚀 3. YouTube Publishing & SEO</h2>
+          <span class="coppa-badge">👶 Made For Kids (COPPA Compliant)</span>
+        </div>
+        <p class="card-subtitle">Automated title, description, and hashtags ready for your channel:</p>
+
+        <!-- YouTube Channel Connection Box -->
+        <div id="ytConnectionBox" class="yt-connection-box">
+          <div class="yt-status-row">
+            <span id="ytStatusDot" class="status-dot disconnected"></span>
+            <div style="flex:1;">
+              <div id="ytStatusText" class="yt-status-text">YouTube Channel Not Linked</div>
+              <small style="color:#64748b;font-size:11px;">Target Channel: <strong>@manikantadatti6150</strong> (COPPA Made For Kids ✅)</small>
+            </div>
+            <button id="connectYtBtn" class="btn btn-connect-yt">🔗 Connect YouTube</button>
+          </div>
+          <!-- Credentials Input Form -->
+          <div id="ytConnectForm" class="yt-connect-form" style="display: none;">
+            <p class="yt-help-text">
+              1. Enable <strong>YouTube Data API v3</strong> in <a href="https://console.cloud.google.com/" target="_blank">Google Cloud Console</a>.<br>
+              2. Enter your OAuth Client ID & Secret below, or select your downloaded <code>client_secret.json</code>:
+            </p>
+            <input type="text" id="ytClientIdInput" class="styled-input" placeholder="Google Client ID (xxx.apps.googleusercontent.com)">
+            <input type="password" id="ytClientSecretInput" class="styled-input" placeholder="Google Client Secret" style="margin-top:6px;">
+            <div style="margin: 8px 0; padding: 6px 10px; background: rgba(0,0,0,0.02); border: 1px dashed #cbd5e1; border-radius: 8px; font-size: 11px;">
+              <span>📁 Or select your downloaded <strong>client_secret.json</strong> file:</span>
+              <input type="file" id="ytSecretFileInput" accept=".json" style="margin-top: 4px; font-size: 11px; width: 100%;">
+            </div>
+            <div style="margin-top:8px; display:flex; gap:8px;">
+              <button id="saveYtCredsBtn" class="btn btn-primary" style="flex:1;">🔗 Authorize with Google Account</button>
+              <button id="cancelYtCredsBtn" class="btn btn-secondary">Cancel</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="uploadStatusBanner" class="status-banner" style="display: none;"></div>
+
+        <div class="form-group">
+          <label for="metaTitle">Video Title:</label>
+          <input type="text" id="metaTitle" class="styled-input">
+        </div>
+
+        <div class="form-group">
+          <label for="metaDesc">Description & Hashtags:</label>
+          <textarea id="metaDesc" class="styled-textarea" rows="3"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="metaTags">YouTube Tags:</label>
+          <input type="text" id="metaTags" class="styled-input">
+        </div>
+
+        <div class="button-group">
+          <button id="copyMetaBtn" class="btn btn-secondary">
+            📋 Copy Details
+          </button>
+          <button id="uploadYoutubeBtn" class="btn btn-youtube">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+            Auto-Upload to YouTube API
+          </button>
+        </div>
+      </div>
+
+      <!-- 4. DAILY AUTOMATION SCHEDULER -->
+      <div class="section-card schedule-card">
+        <h2 id="dailyCardTitle" class="card-title">⏰ 4. Daily Automation Schedule</h2>
+        <p id="dailyCardSubtitle" class="card-subtitle">Scheduled content automatically rotating every morning for your channel:</p>
+
+        <div id="weeklyScheduleGrid" class="weekly-schedule-grid">
+          <div class="schedule-day">
+            <span class="day-name">MON</span>
+            <span class="day-icon">🦁</span>
+            <span class="day-type">Animal Sounds<br><small>Quiz Short (9:16)</small></span>
+          </div>
+          <div class="schedule-day">
+            <span class="day-name">TUE</span>
+            <span class="day-icon">🐢</span>
+            <span class="day-type">Bedtime Story<br><small>Moral Tale (16:9)</small></span>
+          </div>
+          <div class="schedule-day">
+            <span class="day-name">WED</span>
+            <span class="day-icon">🎵</span>
+            <span class="day-type">Nursery Rhyme<br><small>Sing-Along Song</small></span>
+          </div>
+          <div class="schedule-day">
+            <span class="day-name">THU</span>
+            <span class="day-icon">🍎</span>
+            <span class="day-type">ABC Phonics<br><small>Alphabet Short</small></span>
+          </div>
+          <div class="schedule-day">
+            <span class="day-name">FRI</span>
+            <span class="day-icon">🐦</span>
+            <span class="day-type">Moral Story<br><small>Classic Tale (16:9)</small></span>
+          </div>
+          <div class="schedule-day">
+            <span class="day-name">SAT</span>
+            <span class="day-icon">🌙</span>
+            <span class="day-type">Lullaby Song<br><small>Sweet Dreams</small></span>
+          </div>
+          <div class="schedule-day">
+            <span class="day-name">SUN</span>
+            <span class="day-icon">🎈</span>
+            <span class="day-type">Number Safari<br><small>Counting 1 to 5</small></span>
+          </div>
+        </div>
+
+        <div class="scheduler-actions">
+          <div class="script-tip">
+            💡 <strong>Daily Auto-Run:</strong> Double click <code>daily_publish.bat</code> or run Windows Task Scheduler to publish a new video every morning at 9:00 AM!
+          </div>
+        </div>
+      </div>
+
+    </aside>
+
+  <!-- 1-Click Auto-Publish Progress Modal -->
+  <div id="autoPublishModal" class="autopublish-modal" style="display: none;">
+    <div class="autopublish-card">
+      <div class="autopublish-header">
+        <span style="font-size: 40px;">🚀</span>
+        <h3 id="modalTitle">⚡ Auto-Publishing Today's Kids Video</h3>
+        <p id="modalSubtitle">Recording animation, speech narration & publishing directly to @manikantadatti6150</p>
+      </div>
+
+      <div class="pipeline-steps">
+        <div id="stepSelect" class="pipeline-step active">
+          <div class="step-icon">1</div>
+          <div class="step-content">
+            <div class="step-title" id="stepSelectTitle">Selecting Today's Scheduled Episode</div>
+            <div class="step-subtitle" id="stepSelectDesc">Loading cartoon visuals, melody & speech...</div>
+          </div>
+        </div>
+
+        <div id="stepRecord" class="pipeline-step">
+          <div class="step-icon">2</div>
+          <div class="step-content">
+            <div class="step-title" id="stepRecordTitle">Recording High-Def Video & Speaking Voice</div>
+            <div class="step-subtitle" id="stepRecordDesc">Waiting to start...</div>
+            <div class="autopublish-progress-bar">
+              <div id="pipelineProgressFill" class="autopublish-progress-fill"></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="stepSave" class="pipeline-step">
+          <div class="step-icon">3</div>
+          <div class="step-content">
+            <div class="step-title" id="stepSaveTitle">Encoding Video File</div>
+            <div class="step-subtitle" id="stepSaveDesc">Saving video to output/ folder...</div>
+          </div>
+        </div>
+
+        <div id="stepUpload" class="pipeline-step">
+          <div class="step-icon">4</div>
+          <div class="step-content">
+            <div class="step-title" id="stepUploadTitle">Publishing to YouTube API</div>
+            <div class="step-subtitle" id="stepUploadDesc">COPPA Made For Kids ✅ Target: @manikantadatti6150</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="modalSuccessBox" style="display: none; background: #ECFDF5; border: 1.5px solid #10B981; border-radius: 14px; padding: 14px; margin: 15px 0;">
+        <h4 style="color: #065F46; font-size: 16px; margin-bottom: 4px;">🎉 Video is LIVE on YouTube!</h4>
+        <a id="modalLiveUrl" href="#" target="_blank" style="color: #059669; font-weight: bold; font-size: 14px; word-break: break-all;"></a>
+      </div>
+
+      <button id="closeModalBtn" class="close-modal-btn">Close Window</button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="content_library.js"></script>
+  <script src="audio_engine.js"></script>
+  <script src="canvas_engine.js"></script>
+  <script src="studio.js"></script>
+</body>
+</html>
