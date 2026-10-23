@@ -179,6 +179,22 @@ class KidsAudioEngine {
     }
   }
 
+  async loadCustomAudioFromUrl(url = '/user_voice.mp4') {
+    this.resume();
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error("HTTP error " + res.status);
+      const arrayBuffer = await res.arrayBuffer();
+      const decodedBuffer = await this.ctx.decodeAudioData(arrayBuffer);
+      this.customAudioBuffer = decodedBuffer;
+      this.voiceMode = 'custom_audio';
+      return { success: true, duration: decodedBuffer.duration };
+    } catch (err) {
+      console.error("Error loading audio from URL:", err);
+      return { success: false, error: err.message };
+    }
+  }
+
   getAudioStream() {
     this.init();
     return this.destNode ? this.destNode.stream : null;

@@ -10,6 +10,70 @@ const KIDS_CONTENT_LIBRARY_EN = {
   // ==========================================
   shorts: [
     {
+      id: "short_user_greeting",
+      title: "🐘 Baby Elephant & My Voice: Hello Friends! #Shorts",
+      category: "shorts",
+      aspectRatio: "9:16",
+      themeColor: "#4FC3F7",
+      bgStyle: "sunny_park",
+      targetAge: "2-6 years",
+      musicTrack: "playful_bounce",
+      durationSec: 25,
+      seo: {
+        title: "Hello Little Friends! 🐘 Jumbo The Baby Elephant Water Fun #Shorts",
+        description: "A special cheerful greeting with Jumbo the baby elephant spraying magic rainbow bubbles! Subscribe to @manikantadatti6150! 🌟\n\n#kidsshorts #babyelephant #cartoons #animation #toddlerfun #manikantadatti6150",
+        tags: ["kids shorts", "baby elephant", "hello friends", "cartoons", "manikantadatti6150"]
+      },
+      scenes: [
+        {
+          duration: 6.0,
+          heading: "👋 HELLO LITTLE FRIENDS!",
+          narration: "Hello! How are you doing? Are you happy today? What are you playing?",
+          soundEffect: "cheer_fanfare",
+          character: "baby_elephant",
+          characterAction: "jump_celebrate",
+          subtitles: "Hello! How are you? Are you happy today? 👋"
+        },
+        {
+          duration: 5.0,
+          heading: "🐘 MEET JUMBO!",
+          narration: "Jumbo the baby elephant is so happy to meet you today!",
+          soundEffect: "water_splash",
+          character: "baby_elephant",
+          characterAction: "bounce",
+          subtitles: "Jumbo the Baby Elephant is so happy to see you! 🐘"
+        },
+        {
+          duration: 5.5,
+          heading: "🫧 MAGIC RAINBOW BUBBLES!",
+          narration: "Look at the giant rainbow bubbles floating up into the blue sky!",
+          soundEffect: "magic_wand",
+          character: "elephant_bubbles",
+          characterAction: "sing_dance",
+          confetti: true,
+          subtitles: "Shiny rainbow bubbles floating in the sky! 🫧"
+        },
+        {
+          duration: 5.0,
+          heading: "🎈 POP THE BUBBLES!",
+          narration: "Reach up high and pop! Pop! Pop! Pop all the bubbles!",
+          soundEffect: "pop_sound",
+          character: "elephant_bubbles",
+          characterAction: "bounce",
+          subtitles: "Pop! Pop! Pop! Can you pop them all? 🎉"
+        },
+        {
+          duration: 4.5,
+          heading: "🌟 SUBSCRIBE FOR MORE!",
+          narration: "Subscribe to @manikantadatti6150 for more fun cartoon adventures! Bye bye!",
+          soundEffect: "chime_sparkle",
+          character: "subscribe_bell",
+          characterAction: "bounce",
+          subtitles: "Subscribe for more fun cartoon adventures! 🔔"
+        }
+      ]
+    },
+    {
       id: "short_baby_elephant",
       title: "🐘 Jumbo the Baby Elephant: Rainbow Bubble Fun! #Shorts",
       category: "shorts",
@@ -694,6 +758,70 @@ const KIDS_CONTENT_LIBRARY_EN = {
 // ==========================================
 const KIDS_CONTENT_LIBRARY_TE = {
   shorts: [
+    {
+      id: "te_short_user_greeting",
+      title: "🐘 బుజ్జి ఏనుగు | హలో ఎలా ఉన్నావు? బాగున్నావా? #Shorts",
+      category: "shorts",
+      aspectRatio: "9:16",
+      themeColor: "#4FC3F7",
+      bgStyle: "sunny_park",
+      targetAge: "2-6 years",
+      musicTrack: "playful_bounce",
+      durationSec: 25,
+      seo: {
+        title: "హలో ఎలా ఉన్నావు? బాగున్నావా? 🐘 బుజ్జి ఏనుగు సరదా ఆటలు! #Shorts #TeluguKids",
+        description: "హలో చిట్టి నేస్తాలూ! ఎలా ఉన్నారు? బాగున్నారా? ముద్దుల బుజ్జి ఏనుగు బాబుతో సరదా నీటి ఆటలు! Subscribe to @manikantadatti6150 for daily Telugu kids cartoons! 🌟\n\n#telugukids #chandamama #babyelephant #telugushorts #ytshorts #cartoons #manikantadatti6150",
+        tags: ["telugu kids", "ela unnavu", "bagunnava", "baby elephant in telugu", "telugu shorts", "manikantadatti6150"]
+      },
+      scenes: [
+        {
+          duration: 6.0,
+          heading: "👋 హలో చిట్టి నేస్తాలూ!",
+          narration: "Hello! ఎలా ఉన్నావు? బాగున్నావా? ఏం చేస్తున్నావు?",
+          soundEffect: "cheer_fanfare",
+          character: "baby_elephant",
+          characterAction: "jump_celebrate",
+          subtitles: "Hello! ఎలా ఉన్నావు? బాగున్నావా? ఏం చేస్తున్నావు? 👋"
+        },
+        {
+          duration: 5.0,
+          heading: "🐘 బుజ్జి ఏనుగుతో ఆడుకుందాం!",
+          narration: "మన ముద్దుల బుజ్జి ఏనుగు బాబు చూడండి! మీతో ఆడుకోవడానికి పరిగెత్తుకుంటూ వచ్చింది!",
+          soundEffect: "water_splash",
+          character: "baby_elephant",
+          characterAction: "bounce",
+          subtitles: "🐘 ముద్దుల బుజ్జి ఏనుగు బాబుతో ఆడుకుందాం!"
+        },
+        {
+          duration: 5.5,
+          heading: "🫧 రంగురంగుల నీటి బుడగలు!",
+          narration: "తొండం నిండా చల్లని నీళ్ళు తీసుకుని ఆకాశంలోకి రంగురంగుల బుడగలు ఊదుతోంది!",
+          soundEffect: "magic_wand",
+          character: "elephant_bubbles",
+          characterAction: "sing_dance",
+          confetti: true,
+          subtitles: "🫧 ఆకాశంలో రంగురంగుల నీటి బుడగలు!"
+        },
+        {
+          duration: 5.0,
+          heading: "🎈 బుడగలను పగలగొట్టండి!",
+          narration: "టప టప టప! చేతులతో అన్ని బుడగలను పగలగొట్టండి!",
+          soundEffect: "pop_sound",
+          character: "elephant_bubbles",
+          characterAction: "bounce",
+          subtitles: "🎈 టప టప! అన్ని బుడగలను పగలగొట్టండి!"
+        },
+        {
+          duration: 4.5,
+          heading: "🌟 సబ్‌స్క్రైబ్ చేయండి!",
+          narration: "మరిన్ని సరదా వీడియోల కోసం లైక్ మరియు సబ్‌స్క్రైబ్ చేయండి! మళ్ళీ కలుద్దాం, బాయ్ బాయ్!",
+          soundEffect: "chime_sparkle",
+          character: "subscribe_bell",
+          characterAction: "bounce",
+          subtitles: "🌟 మరిన్ని వీడియోల కోసం సబ్‌స్క్రైబ్ చేయండి! 🔔"
+        }
+      ]
+    },
     {
       id: "te_short_baby_elephant",
       title: "🐘 ఏనుగు బాబు సరదా నీటి బుడగలు | Telugu Kids Cartoon #Shorts",

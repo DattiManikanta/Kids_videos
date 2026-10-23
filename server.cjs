@@ -20,6 +20,10 @@ const MIME_TYPES = {
   '.json': 'application/json; charset=utf-8',
   '.webm': 'video/webm',
   '.mp4': 'video/mp4',
+  '.m4a': 'audio/mp4',
+  '.mp3': 'audio/mpeg',
+  '.wav': 'audio/wav',
+  '.ogg': 'audio/ogg',
   '.png': 'image/png',
   '.jpg': 'image/jpeg',
   '.svg': 'image/svg+xml'

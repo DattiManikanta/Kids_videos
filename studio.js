@@ -194,6 +194,13 @@ document.addEventListener('DOMContentLoaded', () => {
     setupVoiceControls();
     setupAutoPublishWorkflow();
     
+    // Pre-load user WhatsApp voice if available
+    audioEngine.loadCustomAudioFromUrl('/user_voice.mp4').then(res => {
+      if (res.success) {
+        console.log('🎤 User WhatsApp voice loaded successfully!', res.duration, 'seconds');
+      }
+    });
+
     // Check URL parameters for CLI / headless invocation
     const urlParams = new URLSearchParams(window.location.search);
     const startLang = urlParams.get('lang') || 'en';
@@ -287,6 +294,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const val = e.target.value;
         if (val === 'microphone') {
           await toggleMicrophone(true);
+        } else if (val === 'user_voice_file') {
+          if (audioEngine.isMicActive) {
+            audioEngine.disableMicrophone();
+            updateMicButtonUI(false);
+          }
+          const res = await audioEngine.loadCustomAudioFromUrl('/user_voice.mp4');
+          if (res.success) {
+            updateVoiceStatusUI('custom_audio', 'WhatsApp Voice: "Hello! ఎలా ఉన్నావు? బాగున్నావా?"');
+          } else {
+            alert('Could not load user_voice.mp4: ' + res.error);
+          }
         } else if (val === 'custom_audio') {
           if (!audioEngine.customAudioBuffer) {
             if (customVoiceFileInput) customVoiceFileInput.click();
@@ -425,12 +443,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const hdOpt = document.createElement('option');
     hdOpt.value = 'online_hd';
     hdOpt.textContent = `✨ Google Natural ${langName} HD Voice [Recommended]`;
-    if (audioEngine.voiceMode === 'online_hd' || (!audioEngine.isMicActive && audioEngine.voiceMode !== 'custom_audio')) {
+    if (audioEngine.voiceMode === 'online_hd') {
       hdOpt.selected = true;
     }
     voiceSelect.appendChild(hdOpt);
 
-    // 2. Microphone Option
+    // 2. User's WhatsApp Voice Recording (user_voice.mp4)
+    const userVoiceOpt = document.createElement('option');
+    userVoiceOpt.value = 'user_voice_file';
+    userVoiceOpt.textContent = `🎤 My WhatsApp Voice: "Hello! ఎలా ఉన్నావు? బాగున్నావా?" [Your Voice]`;
+    if (audioEngine.voiceMode === 'custom_audio') {
+      userVoiceOpt.selected = true;
+    }
+    voiceSelect.appendChild(userVoiceOpt);
+
+    // 3. Microphone Option
     const micOpt = document.createElement('option');
     micOpt.value = 'microphone';
     micOpt.textContent = `🎙️ Live Microphone (Use My Own Real Voice!)`;
