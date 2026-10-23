@@ -10,6 +10,134 @@ const KIDS_CONTENT_LIBRARY_EN = {
   // ==========================================
   shorts: [
     {
+      id: "short_baby_elephant",
+      title: "🐘 Jumbo the Baby Elephant: Rainbow Bubble Fun! #Shorts",
+      category: "shorts",
+      aspectRatio: "9:16",
+      themeColor: "#4FC3F7",
+      bgStyle: "sunny_park",
+      targetAge: "2-5 years",
+      musicTrack: "playful_bounce",
+      durationSec: 25,
+      seo: {
+        title: "Baby Elephant Splashing Rainbow Bubbles! 🐘🫧 Cute Cartoon for Toddlers #Shorts #KidsCartoon",
+        description: "Meet Jumbo the chubby baby elephant! Watch him dip his curly trunk into cool water and blow magic rainbow bubbles into the sky! Like & Subscribe to @manikantadatti6150 for more joyful animal cartoons! 🌟\n\n#babyelephant #elephantcartoon #rainbowbubbles #kidsshorts #toddlerfun #cartoonsforkids #youtubekids",
+        tags: ["baby elephant", "elephant for kids", "bubble pop", "cute elephant cartoon", "toddler animal video", "kids shorts", "preschool fun"]
+      },
+      scenes: [
+        {
+          duration: 5.0,
+          heading: "🐘 MEET JUMBO!",
+          narration: "Hello Little Explorers! Look who came to play today! It's Jumbo, the happiest little baby elephant!",
+          soundEffect: "cheer_fanfare",
+          character: "baby_elephant",
+          characterAction: "bounce",
+          subtitles: "Say hello to Jumbo the Baby Elephant! 🐘"
+        },
+        {
+          duration: 5.0,
+          heading: "💧 SPLISH SPLASH FUN!",
+          narration: "Jumbo dips his curly trunk into the cool sparkling pond! Splish, splash, splosh! Water is so fun!",
+          soundEffect: "water_splash",
+          character: "baby_elephant",
+          characterAction: "wobble",
+          subtitles: "Splish splash! Jumbo plays in the pond! 💧"
+        },
+        {
+          duration: 5.5,
+          heading: "🫧 MAGIC RAINBOW BUBBLES!",
+          narration: "Take a deep breath and WHOOSH! Jumbo blows giant rainbow bubbles high into the blue sky!",
+          soundEffect: "magic_wand",
+          character: "elephant_bubbles",
+          characterAction: "sing_dance",
+          confetti: true,
+          subtitles: "Look at the shiny rainbow bubbles floating up! 🫧"
+        },
+        {
+          duration: 5.0,
+          heading: "🎈 POP THE BUBBLES!",
+          narration: "Reach up high! Pop! Pop! Pop! Can you help Jumbo pop all the colorful bubbles with your fingers?",
+          soundEffect: "pop_sound",
+          character: "elephant_bubbles",
+          characterAction: "bounce",
+          subtitles: "Pop! Pop! Pop! Pop all the bubbles! 🎉"
+        },
+        {
+          duration: 4.5,
+          heading: "🌟 SUBSCRIBE FOR MORE JUMBO!",
+          narration: "Jumbo flaps his big ears and waves goodbye! Tap subscribe to visit Jumbo on more wild adventures!",
+          soundEffect: "chime_sparkle",
+          character: "subscribe_bell",
+          characterAction: "bounce",
+          subtitles: "Subscribe to @manikantadatti6150 for more fun! 🔔"
+        }
+      ]
+    },
+    {
+      id: "short_cute_dino",
+      title: "🦖 Baby Dino's Stomp & Roar Dance! #Shorts",
+      category: "shorts",
+      aspectRatio: "9:16",
+      themeColor: "#66BB6A",
+      bgStyle: "jungle",
+      targetAge: "2-5 years",
+      musicTrack: "bouncy_melody",
+      durationSec: 25,
+      seo: {
+        title: "Baby Dino's Stomp & Roar Dance! 🦖 Cute Dinosaur Cartoon for Kids #Shorts",
+        description: "Stomp your feet with Rexy the cute little baby dinosaur! Watch him wag his spiky tail and do the happy dino dance! Subscribe to @manikantadatti6150 for daily kids animations! 🌟\n\n#dinosaur #dinoshorts #babydino #kidscartoon #preschoollearning #toddlerdance",
+        tags: ["baby dinosaur", "dino dance", "cute dinosaur", "stomp and roar", "kids dino shorts", "toddler cartoons"]
+      },
+      scenes: [
+        {
+          duration: 5.0,
+          heading: "🌴 THE JUNGLE ADVENTURE!",
+          narration: "Welcome to the magical green jungle! Listen to the ground shaking... Stomp! Stomp! Stomp!",
+          soundEffect: "drum_roll",
+          character: "cute_dino",
+          characterAction: "bounce",
+          subtitles: "Who is stomping in the jungle? 🌴"
+        },
+        {
+          duration: 5.0,
+          heading: "🦖 MEET CUTE REXY!",
+          narration: "It's Rexy the chubby baby dinosaur! He has a bright green smile and orange spikes along his back!",
+          soundEffect: "magic_wand",
+          character: "cute_dino",
+          characterAction: "jump_celebrate",
+          subtitles: "Meet Rexy the friendly Baby Dinosaur! 🦖"
+        },
+        {
+          duration: 5.0,
+          heading: "🔊 HEAR HIM ROAR!",
+          narration: "Rexy opens his mouth wide and gives a cute little baby roar: RAWWWR! RAWWWR! Can you roar like Rexy?",
+          soundEffect: "lion_roar",
+          character: "cute_dino",
+          characterAction: "wobble",
+          subtitles: "RAWWWR! Give a big friendly Dino Roar! 🔊"
+        },
+        {
+          duration: 5.5,
+          heading: "💃 THE DINO DANCE!",
+          narration: "Wag your tail and stomp your feet! Rexy is doing the happy dinosaur victory dance! Hurray!",
+          soundEffect: "cheer_fanfare",
+          character: "dancing_dino",
+          characterAction: "party",
+          confetti: true,
+          subtitles: "Wag your tail! Do the Dino Dance! 🌟"
+        },
+        {
+          duration: 4.5,
+          heading: "🌟 SUBSCRIBE FOR MORE DINOS!",
+          narration: "Tap the subscribe button to go on more Jurassic adventures with Rexy tomorrow! Bye bye!",
+          soundEffect: "chime_sparkle",
+          character: "subscribe_bell",
+          characterAction: "bounce",
+          subtitles: "Subscribe for more Dino Adventures! 🔔"
+        }
+      ]
+    },
+    {
       id: "short_animal_quiz_1",
       title: "🦁 Guess the Secret Animal Sound! #Shorts",
       category: "shorts",
@@ -566,6 +694,134 @@ const KIDS_CONTENT_LIBRARY_EN = {
 // ==========================================
 const KIDS_CONTENT_LIBRARY_TE = {
   shorts: [
+    {
+      id: "te_short_baby_elephant",
+      title: "🐘 ఏనుగు బాబు సరదా నీటి బుడగలు | Telugu Kids Cartoon #Shorts",
+      category: "shorts",
+      aspectRatio: "9:16",
+      themeColor: "#4FC3F7",
+      bgStyle: "sunny_park",
+      targetAge: "2-5 years",
+      musicTrack: "playful_bounce",
+      durationSec: 25,
+      seo: {
+        title: "బుజ్జి ఏనుగు రంగురంగుల నీటి బుడగలు! 🐘🫧 Telugu Kids Cartoon #Shorts #TeluguShorts",
+        description: "ముద్దుల బుజ్జి ఏనుగు బాబు సరదాగా నీటిలో ఆడుకుంటూ అందమైన రంగుల బుడగలను ఎగరేస్తున్నాడు! చిన్నపిల్లల సరదా తెలుగు కార్టూన్. Like & Subscribe to @manikantadatti6150! 🌟\n\n#telugukids #telugushorts #babyelephant #telugucartoon #chandamama #pillalapaatalu",
+        tags: ["telugu kids", "telugu shorts", "baby elephant in telugu", "enugu baabu", "telugu cartoon", "kids rhymes"]
+      },
+      scenes: [
+        {
+          duration: 5.0,
+          heading: "🐘 బుజ్జి ఏనుగు బాబు!",
+          narration: "హలో చిట్టి నేస్తాలూ! ఇక్కడ చూడండి ఎవరో వచ్చారు! మన ముద్దుల బుజ్జి ఏనుగు బాబు!",
+          soundEffect: "cheer_fanfare",
+          character: "baby_elephant",
+          characterAction: "bounce",
+          subtitles: "🐘 రండి బుజ్జి ఏనుగు బాబుతో ఆడుకుందాం!"
+        },
+        {
+          duration: 5.0,
+          heading: "💧 చల్లని నీటి చెరువు!",
+          narration: "బుజ్జి ఏనుగు తన ముద్దుల తొండంతో చల్లని నీటిలో చలపల ఆడుకుంటోంది! ఎంత సరదాగా ఉందో చూడండి!",
+          soundEffect: "water_splash",
+          character: "baby_elephant",
+          characterAction: "wobble",
+          subtitles: "💧 తొండంతో చల్లని నీటిలో సరదా ఆటలు!"
+        },
+        {
+          duration: 5.5,
+          heading: "🫧 ఇంద్రధనుస్సు రంగుల బుడగలు!",
+          narration: "అదిగో చూడండి! తొండం పైకెత్తి ఆకాశంలోకి రంగురంగుల బుడగలను ఎగరేస్తోంది! వావ్ ఎంత బాగున్నాయో!",
+          soundEffect: "magic_wand",
+          character: "elephant_bubbles",
+          characterAction: "sing_dance",
+          confetti: true,
+          subtitles: "🫧 ఆకాశంలో రంగురంగుల నీటి బుడగలు!"
+        },
+        {
+          duration: 5.0,
+          heading: "🎈 బుడగలను పగలగొట్టండి!",
+          narration: "టప టప టప! మీ చిట్టి చేతులతో ఆ అందమైన బుడగలను పగలగొట్టండి చూద్దాం!",
+          soundEffect: "pop_sound",
+          character: "elephant_bubbles",
+          characterAction: "bounce",
+          subtitles: "🎈 టప టప! అన్ని బుడగలను పగలగొట్టండి!"
+        },
+        {
+          duration: 4.5,
+          heading: "🌟 సబ్‌స్క్రైబ్ చేయండి!",
+          narration: "మరిన్ని సరదా జంతువుల వీడియోల కోసం లైక్ మరియు సబ్‌స్క్రైబ్ చేయండి! మళ్ళీ కలుద్దాం, బాయ్ బాయ్!",
+          soundEffect: "chime_sparkle",
+          character: "subscribe_bell",
+          characterAction: "bounce",
+          subtitles: "🌟 మరిన్ని వీడియోల కోసం సబ్‌స్క్రైబ్ చేయండి! 🔔"
+        }
+      ]
+    },
+    {
+      id: "te_short_cute_dino",
+      title: "🦖 బుజ్జి డైనోసార్ సరదా డ్యాన్స్! #Shorts",
+      category: "shorts",
+      aspectRatio: "9:16",
+      themeColor: "#66BB6A",
+      bgStyle: "jungle",
+      targetAge: "2-5 years",
+      musicTrack: "bouncy_melody",
+      durationSec: 25,
+      seo: {
+        title: "బుజ్జి డైనోసార్ సరదా డ్యాన్స్! 🦖 Telugu Kids Cartoon #Shorts",
+        description: "అడవిలో ముద్దుల బుజ్జి డైనోసార్ సరదాగా అడుగులేస్తూ చిందులేస్తోంది! Telugu kids fun cartoon shorts. Subscribe to @manikantadatti6150! 🌟\n\n#telugukids #dinosaurintelugu #telugushorts #cartoons",
+        tags: ["telugu kids", "telugu dinosaur", "telugu cartoon", "kids shorts telugu"]
+      },
+      scenes: [
+        {
+          duration: 5.0,
+          heading: "🌴 అందమైన పచ్చని అడవి!",
+          narration: "పచ్చని అడవిలో ఎవరో అడుగులు వేస్తున్నారు! టప్ టప్ టప్! ఎవరు వాళ్ళు?",
+          soundEffect: "drum_roll",
+          character: "cute_dino",
+          characterAction: "bounce",
+          subtitles: "🌴 అడవిలో ఎవరు అడుగులేస్తున్నారు?"
+        },
+        {
+          duration: 5.0,
+          heading: "🦖 ముద్దుల బుజ్జి డైనోసార్!",
+          narration: "ఇదిగో మన ఫ్రెండ్లీ బుజ్జి డైనోసార్! పచ్చని శరీరం, వీపుపై నారింజ రంగు ముళ్ళు కలిగి ఉంది!",
+          soundEffect: "magic_wand",
+          character: "cute_dino",
+          characterAction: "jump_celebrate",
+          subtitles: "🦖 ఇదిగో మన ఫ్రెండ్లీ బుజ్జి డైనోసార్!"
+        },
+        {
+          duration: 5.0,
+          heading: "🔊 గట్టిగా అరుద్దాం!",
+          narration: "చిన్న నోరు తెరిచి ముద్దుగా అరుస్తోంది! రావర్... రావర్! మీరు కూడా అరవండి చూద్దాం!",
+          soundEffect: "lion_roar",
+          character: "cute_dino",
+          characterAction: "wobble",
+          subtitles: "🔊 రావర్! డైనోసార్ లా గట్టిగా అరుద్దాం!"
+        },
+        {
+          duration: 5.5,
+          heading: "💃 సరదా డ్యాన్స్!",
+          narration: "తోక ఊపుతూ, కాళ్ళు తొక్కుతూ ఎంత ముద్దుగా చిందులేస్తోందో చూడండి! శభాష్ చిన్నారులూ!",
+          soundEffect: "cheer_fanfare",
+          character: "dancing_dino",
+          characterAction: "party",
+          confetti: true,
+          subtitles: "💃 తోక ఊపుతూ సరదా డైనోసార్ డ్యాన్స్! 🌟"
+        },
+        {
+          duration: 4.5,
+          heading: "🌟 సబ్‌స్క్రైబ్ చేయండి!",
+          narration: "రేపు మరిన్ని సరదా సాహసాల కోసం సబ్‌స్క్రైబ్ చేయండి! బాయ్ బాయ్!",
+          soundEffect: "chime_sparkle",
+          character: "subscribe_bell",
+          characterAction: "bounce",
+          subtitles: "🌟 మరిన్ని వీడియోల కోసం సబ్‌స్క్రైబ్ చేయండి! 🔔"
+        }
+      ]
+    },
     {
       id: "te_short_animal_quiz_1",
       title: "🦁 జంతువుల శబ్దాలు | ఎవరు గర్జిస్తారు? #Shorts",
@@ -1154,6 +1410,134 @@ const KIDS_CONTENT_LIBRARY_TE = {
 // ==========================================
 const KIDS_CONTENT_LIBRARY_HI = {
   shorts: [
+    {
+      id: "hi_short_baby_elephant",
+      title: "🐘 हाथी राजा और जादुई पानी के बुलबुले! #Shorts",
+      category: "shorts",
+      aspectRatio: "9:16",
+      themeColor: "#4FC3F7",
+      bgStyle: "sunny_park",
+      targetAge: "2-5 years",
+      musicTrack: "playful_bounce",
+      durationSec: 25,
+      seo: {
+        title: "हाथी राजा और जादुई रंग-बिरंगे बुलबुले! 🐘🫧 Hindi Kids Cartoon #Shorts",
+        description: "प्यारा नन्हा हाथी राजा अपनी सूंड से ठंडे पानी में खेल रहा है और आसमान में इंद्रधनुषी बुलबुले उड़ा रहा है! Subscribe to @manikantadatti6150 for daily cartoons! 🌟\n\n#hindikids #hathiraja #hindicartoon #balgeet #kidsshorts",
+        tags: ["hindi kids", "hathi raja", "baby elephant in hindi", "hindi cartoon", "kids shorts hindi"]
+      },
+      scenes: [
+        {
+          duration: 5.0,
+          heading: "🐘 नन्हे हाथी राजा!",
+          narration: "नमस्ते प्यारे बच्चों! देखिए आज हमसे मिलने कौन आया है! हमारा प्यारा नन्हा हाथी राजा!",
+          soundEffect: "cheer_fanfare",
+          character: "baby_elephant",
+          characterAction: "bounce",
+          subtitles: "🐘 नमस्ते नन्हे हाथी राजा!"
+        },
+        {
+          duration: 5.0,
+          heading: "💧 ठंडे पानी की मस्ती!",
+          narration: "हाथी राजा अपनी घुंघराली सूंड से पानी में छप-छप खेल रहे हैं! वाह कितना मज़ा आ रहा है!",
+          soundEffect: "water_splash",
+          character: "baby_elephant",
+          characterAction: "wobble",
+          subtitles: "💧 छप-छप पानी में खूब मस्ती!"
+        },
+        {
+          duration: 5.5,
+          heading: "🫧 जादुई रंग-बिरंगे बुलबुले!",
+          narration: "अरे वाह! हाथी राजा ने सूंड ऊपर उठाई और आसमान में चमकीले रंग-बिरंगे बुलबुले उड़ा दिए!",
+          soundEffect: "magic_wand",
+          character: "elephant_bubbles",
+          characterAction: "sing_dance",
+          confetti: true,
+          subtitles: "🫧 आसमान में सुंदर रंग-बिरंगे बुलबुले!"
+        },
+        {
+          duration: 5.0,
+          heading: "🎈 बुलबुले फोड़ो!",
+          narration: "टप टप टप! अपनी नन्ही उंगलियों से सारे बुलबुले फोड़ डालिए!",
+          soundEffect: "pop_sound",
+          character: "elephant_bubbles",
+          characterAction: "bounce",
+          subtitles: "🎈 टप टप! सारे बुलबुले फोड़ो!"
+        },
+        {
+          duration: 4.5,
+          heading: "🌟 सब्सक्राइब कीजिए!",
+          narration: "हाथी राजा की और भी प्यारी कहानियों के लिए चैनल को सब्सक्राइब कीजिए! बाय बाय!",
+          soundEffect: "chime_sparkle",
+          character: "subscribe_bell",
+          characterAction: "bounce",
+          subtitles: "🌟 और कहानियों के लिए सब्सक्राइब कीजिए! 🔔"
+        }
+      ]
+    },
+    {
+      id: "hi_short_cute_dino",
+      title: "🦖 नन्हे डायनासोर का प्यारा डांस! #Shorts",
+      category: "shorts",
+      aspectRatio: "9:16",
+      themeColor: "#66BB6A",
+      bgStyle: "jungle",
+      targetAge: "2-5 years",
+      musicTrack: "bouncy_melody",
+      durationSec: 25,
+      seo: {
+        title: "नन्हे डायनासोर का प्यारा डांस! 🦖 Hindi Kids Cartoon #Shorts",
+        description: "जंगल में नन्हा प्यारा डायनासोर अपने पैर थिरकाते हुए डांस कर रहा है! Subscribe to @manikantadatti6150! 🌟\n\n#hindikids #dinosaur #hindicartoon #ytshorts",
+        tags: ["hindi kids", "dinosaur in hindi", "hindi cartoon", "kids shorts hindi"]
+      },
+      scenes: [
+        {
+          duration: 5.0,
+          heading: "🌴 सुंदर हरा जंगल!",
+          narration: "हरे-भरे जंगल में कोई अपने नन्हे कदम रख रहा है! धप धप धप! कौन है वो?",
+          soundEffect: "drum_roll",
+          character: "cute_dino",
+          characterAction: "bounce",
+          subtitles: "🌴 जंगल में कौन पैर थिरका रहा है?"
+        },
+        {
+          duration: 5.0,
+          heading: "🦖 प्यारा नन्हा डायनासोर!",
+          narration: "ये तो हमारा दोस्त प्यारा डायनासोर है! हरा शरीर और पीठ पर संतरी कांटे!",
+          soundEffect: "magic_wand",
+          character: "cute_dino",
+          characterAction: "jump_celebrate",
+          subtitles: "🦖 प्यारा नन्हा दोस्त डायनासोर!"
+        },
+        {
+          duration: 5.0,
+          heading: "🔊 ज़ोर से दहाड़ो!",
+          narration: "अपना मुँह खोलकर प्यार से दहाड़ता है: रॉआर... रॉआर! आप भी दहाड़िए!",
+          soundEffect: "lion_roar",
+          character: "cute_dino",
+          characterAction: "wobble",
+          subtitles: "🔊 रॉआर! डायनासोर की प्यारी दहाड़!"
+        },
+        {
+          duration: 5.5,
+          heading: "💃 प्यारा डायनासोर डांस!",
+          narration: "पूँछ हिलाते हुए और पैर थिरकाते हुए कितना प्यारा डांस कर रहा है! शाबाश बच्चों!",
+          soundEffect: "cheer_fanfare",
+          character: "dancing_dino",
+          characterAction: "party",
+          confetti: true,
+          subtitles: "💃 पूँछ हिलाकर प्यारा डांस! 🌟"
+        },
+        {
+          duration: 4.5,
+          heading: "🌟 सब्सक्राइब कीजिए!",
+          narration: "कल फिर मिलेंगे नए रोमांच के साथ! चैनल को सब्सक्राइब कीजिए! बाय बाय!",
+          soundEffect: "chime_sparkle",
+          character: "subscribe_bell",
+          characterAction: "bounce",
+          subtitles: "🌟 सब्सक्राइब कीजिए नए रोमांच के लिए! 🔔"
+        }
+      ]
+    },
     {
       id: "hi_short_animal_quiz_1",
       title: "🦁 जंगली जानवरों की आवाज़ें | किसकी है ये दहाड़? #Shorts",

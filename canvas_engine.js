@@ -522,6 +522,16 @@ class KidsCanvasEngine {
         this.drawWoodenHorse(ctx, 0, 0);
         break;
 
+      case "baby_elephant":
+      case "elephant_bubbles":
+        this.drawBabyElephant(ctx, 0, 0, this.character === "elephant_bubbles");
+        break;
+
+      case "cute_dino":
+      case "dancing_dino":
+        this.drawCuteDino(ctx, 0, 0);
+        break;
+
       case "question_mark":
       default:
         this.drawQuestionMark(ctx, 0, 0);
@@ -1801,6 +1811,273 @@ class KidsCanvasEngine {
       ctx.fillStyle = '#FFEB3B'; // Joyful Cocomelon-style yellow
       ctx.fillText(line, w / 2, ly);
     });
+
+    ctx.restore();
+  }
+
+  // ==========================================
+  // SUPER ATTRACTIVE CHARACTERS: BABY ELEPHANT & CUTE DINO
+  // ==========================================
+  drawBabyElephant(ctx, x, y, withBubbles = true) {
+    const t = this.time;
+    ctx.save();
+    ctx.translate(x, y);
+
+    // Cute animated bounce & trunk waggle
+    const bounce = Math.sin(t * 5) * 8;
+    ctx.translate(0, bounce);
+
+    // Tail with cute fluffy tuft
+    ctx.save();
+    ctx.strokeStyle = '#90A4AE';
+    ctx.lineWidth = 8;
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    ctx.moveTo(-90, 40);
+    ctx.quadraticCurveTo(-125, 45 + Math.sin(t * 8) * 15, -130, 20);
+    ctx.stroke();
+    ctx.fillStyle = '#607D8B';
+    ctx.beginPath();
+    ctx.arc(-132, 20, 10, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+
+    // 4 Sturdy Chubby Legs with cute white toenails
+    const legColor = '#78909C';
+    const drawLeg = (lx, ly) => {
+      ctx.fillStyle = legColor;
+      ctx.beginPath();
+      ctx.roundRect(lx - 22, ly, 44, 75, [10, 10, 18, 18]);
+      ctx.fill();
+      // White cute toenails
+      ctx.fillStyle = '#FFFFFF';
+      for (let n = -12; n <= 12; n += 12) {
+        ctx.beginPath();
+        ctx.arc(lx + n, ly + 70, 6, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    };
+
+    drawLeg(-60, 45);
+    drawLeg(-20, 50);
+    drawLeg(30, 45);
+    drawLeg(70, 50);
+
+    // Chubby Blue-Grey Body
+    const bodyGrad = ctx.createRadialGradient(-10, 0, 30, 0, 10, 130);
+    bodyGrad.addColorStop(0, '#B0BEC5');
+    bodyGrad.addColorStop(1, '#78909C');
+    ctx.fillStyle = bodyGrad;
+    ctx.beginPath();
+    ctx.ellipse(0, 15, 110, 90, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Soft Pink Inner Belly Patch
+    ctx.fillStyle = '#CFD8DC';
+    ctx.beginPath();
+    ctx.ellipse(0, 30, 70, 55, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Big Head
+    const headGrad = ctx.createRadialGradient(25, -55, 20, 30, -50, 95);
+    headGrad.addColorStop(0, '#CFD8DC');
+    headGrad.addColorStop(1, '#90A4AE');
+    ctx.fillStyle = headGrad;
+    ctx.beginPath();
+    ctx.arc(35, -55, 75, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Big Floppy Ears with Flapping Motion
+    const earWag = Math.sin(t * 6) * 0.12;
+    ctx.save();
+    ctx.translate(-25, -60);
+    ctx.rotate(earWag);
+    // Outer Ear
+    ctx.fillStyle = '#78909C';
+    ctx.beginPath();
+    ctx.ellipse(0, 0, 55, 70, -0.2, 0, Math.PI * 2);
+    ctx.fill();
+    // Inner Pink Ear
+    ctx.fillStyle = '#FFCDD2';
+    ctx.beginPath();
+    ctx.ellipse(0, 0, 38, 52, -0.2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+
+    // Rosy Pink Cheeks
+    ctx.fillStyle = 'rgba(255, 138, 128, 0.65)';
+    ctx.beginPath();
+    ctx.arc(10, -35, 16, 0, Math.PI * 2);
+    ctx.arc(65, -35, 16, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Big Cartoon Kawaii Eyes
+    this.drawCartoonEyes(ctx, 15, -65, 60, -65, 18);
+
+    // Uplifted Playful Trunk
+    const trunkFlex = Math.sin(t * 7) * 12;
+    ctx.strokeStyle = '#78909C';
+    ctx.lineWidth = 32;
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    ctx.moveTo(45, -20);
+    ctx.quadraticCurveTo(85, -10 + trunkFlex, 115, -60 + trunkFlex);
+    ctx.stroke();
+
+    // Trunk Tip
+    ctx.fillStyle = '#FFCDD2';
+    ctx.beginPath();
+    ctx.arc(115, -60 + trunkFlex, 16, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Cute Yellow Baby Bell / Ribbon around neck
+    ctx.fillStyle = '#FFD54F';
+    ctx.beginPath();
+    ctx.arc(20, 5, 14, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#FFA000';
+    ctx.beginPath();
+    ctx.arc(20, 8, 4, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Water Bubbles & Spray
+    if (withBubbles) {
+      const bubbleColors = ['rgba(129, 212, 250, 0.8)', 'rgba(179, 229, 252, 0.9)', 'rgba(255, 205, 210, 0.75)', 'rgba(255, 245, 157, 0.85)'];
+      for (let b = 0; b < 7; b++) {
+        const bt = (t * 2 + b * 0.7) % 3;
+        const bx = 115 + bt * 50 + Math.sin(b * 2 + t * 4) * 20;
+        const by = -60 + trunkFlex - bt * 90 - b * 15;
+        const bRadius = 12 + (b % 3) * 6;
+
+        ctx.save();
+        ctx.fillStyle = bubbleColors[b % bubbleColors.length];
+        ctx.strokeStyle = '#FFFFFF';
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.arc(bx, by, bRadius, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+        // Bubble highlight reflection
+        ctx.fillStyle = '#FFFFFF';
+        ctx.beginPath();
+        ctx.arc(bx - bRadius * 0.35, by - bRadius * 0.35, bRadius * 0.28, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    ctx.restore();
+  }
+
+  drawCuteDino(ctx, x, y) {
+    const t = this.time;
+    ctx.save();
+    ctx.translate(x, y);
+
+    // Stomping bounce
+    const stomp = Math.sin(t * 6) * 10;
+    ctx.translate(0, stomp);
+
+    // Tail with wobbling tip
+    const tailWag = Math.sin(t * 8) * 15;
+    ctx.fillStyle = '#66BB6A';
+    ctx.beginPath();
+    ctx.moveTo(-60, 40);
+    ctx.quadraticCurveTo(-120, 50, -145 + tailWag, 20);
+    ctx.quadraticCurveTo(-115, 10, -50, 10);
+    ctx.closePath();
+    ctx.fill();
+
+    // Orange Spikes along Tail and Back
+    ctx.fillStyle = '#FF7043';
+    const drawSpike = (sx, sy, rot) => {
+      ctx.save();
+      ctx.translate(sx, sy);
+      ctx.rotate(rot);
+      ctx.beginPath();
+      ctx.moveTo(-12, 0);
+      ctx.lineTo(0, -22);
+      ctx.lineTo(12, 0);
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+    };
+
+    drawSpike(-135 + tailWag, 20, -0.6);
+    drawSpike(-105, 30, -0.4);
+    drawSpike(-75, 20, -0.2);
+    drawSpike(-45, -15, 0);
+    drawSpike(-25, -65, 0.2);
+    drawSpike(0, -105, 0.4);
+
+    // 2 Big Chubby Dino Feet
+    const drawDinoFoot = (fx, fy) => {
+      ctx.fillStyle = '#4CAF50';
+      ctx.beginPath();
+      ctx.roundRect(fx - 25, fy, 50, 70, [15, 15, 20, 20]);
+      ctx.fill();
+      // White Claws
+      ctx.fillStyle = '#FFF9C4';
+      for (let c = -14; c <= 14; c += 14) {
+        ctx.beginPath();
+        ctx.arc(fx + c, fy + 68, 8, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    };
+
+    drawDinoFoot(-30, 40);
+    drawDinoFoot(35, 45);
+
+    // Chubby Green Dino Body
+    const dinoGrad = ctx.createRadialGradient(0, -10, 20, 0, 0, 120);
+    dinoGrad.addColorStop(0, '#A5D6A7');
+    dinoGrad.addColorStop(1, '#4CAF50');
+    ctx.fillStyle = dinoGrad;
+    ctx.beginPath();
+    ctx.ellipse(0, 10, 95, 80, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Soft Creamy Yellow Belly
+    ctx.fillStyle = '#FFF59D';
+    ctx.beginPath();
+    ctx.ellipse(15, 20, 60, 55, 0.1, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Cute Big Dino Head
+    ctx.fillStyle = dinoGrad;
+    ctx.beginPath();
+    ctx.roundRect(-20, -120, 130, 95, [45, 55, 30, 30]);
+    ctx.fill();
+
+    // Big Kawaii Cartoon Eyes
+    this.drawCartoonEyes(ctx, 20, -85, 75, -85, 20);
+
+    // Cute Cheerful Smile with Two Tiny White Teeth
+    ctx.strokeStyle = '#2E7D32';
+    ctx.lineWidth = 5;
+    ctx.beginPath();
+    ctx.arc(55, -50, 25, 0.1 * Math.PI, 0.9 * Math.PI);
+    ctx.stroke();
+
+    // Tiny cute dino tooth
+    ctx.fillStyle = '#FFFFFF';
+    ctx.beginPath();
+    ctx.moveTo(50, -48);
+    ctx.lineTo(55, -38);
+    ctx.lineTo(60, -48);
+    ctx.closePath();
+    ctx.fill();
+
+    // Tiny Waving Little Dino Hands
+    const handWave = Math.sin(t * 9) * 0.2;
+    ctx.save();
+    ctx.translate(45, -5);
+    ctx.rotate(handWave);
+    ctx.fillStyle = '#388E3C';
+    ctx.beginPath();
+    ctx.roundRect(0, 0, 30, 16, 8);
+    ctx.fill();
+    ctx.restore();
 
     ctx.restore();
   }

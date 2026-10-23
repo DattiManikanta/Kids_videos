@@ -385,5 +385,6 @@ module.exports = {
   saveClientCredentials,
   getAuthUrl,
   exchangeCodeForTokens,
-  getValidAccessToken
+  getValidAccessToken,
+  getLatestVideoFile
 };

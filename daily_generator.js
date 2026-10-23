@@ -24,33 +24,33 @@ if (!fs.existsSync(OUTPUT_DIR)) {
 
 // 7-Day Telugu Content Rotation Matrix (తెలుగు ప్రణాళిక)
 const ROTATION_SCHEDULE_TE = [
-  { day: 'Sunday', category: 'shorts', episodeId: 'te_short_numbers_telugu', desc: '🎈 1 నుండి 5 వరకు సంఖ్యల సరదా! (Telugu Counting 1 to 5)' },
+  { day: 'Sunday', category: 'shorts', episodeId: 'te_short_cute_dino', desc: '🦖 బుజ్జి డైనోసార్ సరదా డ్యాన్స్! (Cute Dino Stomp & Dance)' },
   { day: 'Monday', category: 'shorts', episodeId: 'te_short_animal_quiz_1', desc: '🦁 జంతువుల శబ్దాల క్విజ్: ఎవరు గర్జిస్తారు? (Lion Sound Quiz)' },
   { day: 'Tuesday', category: 'stories', episodeId: 'te_story_rabbit_tortoise', desc: '🐢 నీతికథ: కుందేలు మరియు తాబేలు పరుగు పందెం (Rabbit & Tortoise)' },
   { day: 'Wednesday', category: 'rhymes', episodeId: 'te_rhyme_chitti_chilakamma', desc: '🦜 తెలుగు రైమ్: చిట్టి చిలకమ్మా అమ్మ కొట్టిందా? (Chitti Chilakamma)' },
-  { day: 'Thursday', category: 'shorts', episodeId: 'te_short_telugu_varnamala', desc: '🍎 తెలుగు అక్షరమాల సరదా: "అ" అరటిపండు, "ఆ" ఆవు (Aksharamala)' },
+  { day: 'Thursday', category: 'shorts', episodeId: 'te_short_baby_elephant', desc: '🐘 బుజ్జి ఏనుగు బాబు సరదా నీటి బుడగలు! (Jumbo Baby Elephant)' },
   { day: 'Friday', category: 'stories', episodeId: 'te_story_thirsty_crow', desc: '🐦 నీతికథ: దాహం వేసిన తెలివైన కాకి కథ (The Thirsty Crow)' },
   { day: 'Saturday', category: 'rhymes', episodeId: 'te_rhyme_chandamama_raave', desc: '🌙 అమృతమైన జోలపాట: చందమామ రావే జాబిల్లి రావే (Chandamama Raave)' }
 ];
 
 // 7-Day Hindi Content Rotation Matrix (हिन्दी प्रणालिका)
 const ROTATION_SCHEDULE_HI = [
-  { day: 'Sunday', category: 'shorts', episodeId: 'hi_short_numbers_hindi', desc: '🎈 1 से 5 तक गिनती का मज़ा! (Counting 1 to 5)' },
+  { day: 'Sunday', category: 'shorts', episodeId: 'hi_short_cute_dino', desc: '🦖 नन्हे डायनासोर का प्यारा डांस! (Cute Dino Stomp & Dance)' },
   { day: 'Monday', category: 'shorts', episodeId: 'hi_short_animal_quiz_1', desc: '🦁 जंगली जानवरों की आवाज़ें: शेर की दहाड़ (Lion Sound Quiz)' },
   { day: 'Tuesday', category: 'stories', episodeId: 'hi_story_rabbit_tortoise', desc: '🐢 पंचतंत्र कथा: कछुआ और खरगोश की दौड़ (Rabbit & Tortoise)' },
   { day: 'Wednesday', category: 'rhymes', episodeId: 'hi_rhyme_machli_jal', desc: '🐟 बालगीत: मछली जल की रानी है, जीवन उसका पानी है (Machli Jal)' },
-  { day: 'Thursday', category: 'shorts', episodeId: 'hi_short_hindi_varnamala', desc: '🍎 हिंदी वर्णमाला: अ से अनार, आ से आम (Varnamala)' },
+  { day: 'Thursday', category: 'shorts', episodeId: 'hi_short_baby_elephant', desc: '🐘 हाथी राजा और जादुई पानी के बुलबुले! (Jumbo Baby Elephant)' },
   { day: 'Friday', category: 'stories', episodeId: 'hi_story_thirsty_crow', desc: '🐦 नीतिकथा: चतुर प्यासा कौआ और मटका (The Thirsty Crow)' },
   { day: 'Saturday', category: 'rhymes', episodeId: 'hi_rhyme_lakdi_ki_kathi', desc: '🪵 प्रसिद्ध बाल कविता: लकड़ी की काठी, काठी पे घोड़ा (Lakdi Ki Kathi)' }
 ];
 
 // 7-Day English Content Rotation Matrix
 const ROTATION_SCHEDULE_EN = [
-  { day: 'Sunday', category: 'shorts', episodeId: 'short_numbers_safari', desc: '🎈 Number Safari: Count 1 to 5 with Flying Balloons!' },
+  { day: 'Sunday', category: 'shorts', episodeId: 'short_cute_dino', desc: '🦖 Baby Dino\'s Stomp & Roar Dance Adventure!' },
   { day: 'Monday', category: 'shorts', episodeId: 'short_animal_quiz_1', desc: '🦁 Guess the Animal Sound: Who says ROAR?' },
   { day: 'Tuesday', category: 'stories', episodeId: 'story_moon_lost_star', desc: '🌙 Bedtime Story: The Moon and the Lost Star' },
   { day: 'Wednesday', category: 'rhymes', episodeId: 'rhyme_twinkle_twinkle', desc: '⭐ Sing-Along: Twinkle Twinkle Little Star' },
-  { day: 'Thursday', category: 'shorts', episodeId: 'short_abc_magic', desc: '🍎 ABC Phonics: Letter A is for Apple' },
+  { day: 'Thursday', category: 'shorts', episodeId: 'short_baby_elephant', desc: '🐘 Jumbo the Baby Elephant: Rainbow Bubble Fun!' },
   { day: 'Friday', category: 'stories', episodeId: 'story_brave_bunny', desc: '🐰 Moral Tale: Barnaby the Brave Little Bunny' },
   { day: 'Saturday', category: 'rhymes', episodeId: 'rhyme_wheels_on_bus', desc: '🚌 Sing-Along: The Wheels on the Bus' }
 ];

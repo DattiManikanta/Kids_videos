@@ -115,17 +115,36 @@
           </button>
         </div>
 
-        <!-- Voice Selection Bar -->
+        <!-- Voiceover Narration Bar: Live Mic & Custom Voice Upload -->
         <div class="voice-settings-bar">
-          <div class="voice-picker-wrap">
-            <label for="voiceSelect" class="voice-label">🗣️ Voice Narration:</label>
-            <select id="voiceSelect" class="styled-select-voice">
-              <option value="auto">🔄 Auto Detect Voice</option>
-            </select>
+          <div class="voice-top-row">
+            <div class="voice-picker-wrap">
+              <label for="voiceSelect" class="voice-label">🎙️ Voiceover:</label>
+              <select id="voiceSelect" class="styled-select-voice">
+                <option value="online_hd">✨ Google Natural HD Voice [Recommended]</option>
+                <option value="microphone">🎙️ Live Microphone (Use My Own Voice!)</option>
+                <option value="custom_audio">📁 Custom Uploaded Audio (My Voice)</option>
+                <option value="auto">🔄 Auto Detect Voice</option>
+              </select>
+            </div>
+            <div class="voice-action-buttons">
+              <button id="micToggleBtn" class="btn-mic-toggle" title="Turn on your microphone to speak in the video">
+                <span id="micBtnIcon">🎙️</span> <span id="micBtnText">Use My Voice</span>
+              </button>
+              <button id="uploadVoiceBtn" class="btn-voice-upload" title="Upload your recorded voice audio file (MP3/WAV)">
+                📁 Upload Voice
+              </button>
+              <input type="file" id="customVoiceFileInput" accept="audio/*" style="display:none;">
+              <button id="testVoiceBtn" class="btn-tiny" title="Test voice narration">
+                🔊 Test
+              </button>
+            </div>
           </div>
-          <button id="testVoiceBtn" class="btn btn-tiny" title="Test voice narration">
-            🔊 Test Voice
-          </button>
+          <!-- Live Voice Mode Indicator -->
+          <div id="voiceStatusIndicator" class="voice-status-indicator">
+            <span class="status-dot-active"></span>
+            <span id="voiceStatusText">Voice: <strong>Google Natural HD</strong> (Click "Use My Voice" to speak live into video!)</span>
+          </div>
         </div>
 
         <!-- Export & Recording Status Banner -->

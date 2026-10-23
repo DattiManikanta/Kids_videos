@@ -50,14 +50,35 @@ async function run() {
   console.log(`📹 Found recorded video: ${path.basename(latestVideo)}`);
   console.log('🚀 Uploading test video to YouTube channel @manikantadatti6150...');
 
-  try {
-    const result = await uploadVideoToYouTube({
-      title: '🦁 Guess The Animal Sound! #Shorts #KidsLearning (TinyToons Test)',
+  const fileName = path.basename(latestVideo);
+  let uploadMeta = {
+    title: '🐘 Jumbo the Baby Elephant: Rainbow Bubble Fun! #Shorts #KidsCartoon',
+    description: 'Meet Jumbo the chubby baby elephant! Watch him dip his curly trunk into cool water and blow magic rainbow bubbles into the sky! Subscribe to @manikantadatti6150 for joyful kids cartoons! 🌟\n\n#babyelephant #elephantcartoon #rainbowbubbles #kidsshorts #youtubekids #cartoons',
+    tags: ['baby elephant', 'elephant cartoon', 'rainbow bubbles', 'kids shorts', 'manikantadatti6150', 'animation'],
+    language: 'en',
+    privacyStatus: 'public'
+  };
+
+  if (fileName.includes('cute_dino')) {
+    uploadMeta = {
+      title: '🦖 Baby Dino\'s Stomp & Roar Dance! #Shorts #KidsCartoon',
+      description: 'Stomp your feet with Rexy the cute little baby dinosaur! Watch him wag his spiky tail and do the happy dino dance! Subscribe to @manikantadatti6150! 🌟\n\n#dinosaur #dinoshorts #babydino #kidscartoon #preschoollearning',
+      tags: ['baby dinosaur', 'dino dance', 'cute dinosaur', 'stomp and roar', 'kids shorts', 'manikantadatti6150'],
+      language: 'en',
+      privacyStatus: 'public'
+    };
+  } else if (fileName.includes('animal_quiz')) {
+    uploadMeta = {
+      title: '🦁 Guess The Animal Sound! #Shorts #KidsLearning (TinyToons)',
       description: 'Can you guess which friendly animal is making this sound? Test your toddler with this fun animal sound riddle! Subscribe to @manikantadatti6150 for daily kids magic! 🌟\n\n#kidsshorts #animalsounds #youtubekids #cartoons #animation #toddlerfun',
       tags: ['kids shorts', 'animal sounds', 'toddler learning', 'guess the animal', 'manikantadatti6150', 'animation'],
       language: 'en',
       privacyStatus: 'public'
-    }, latestVideo);
+    };
+  }
+
+  try {
+    const result = await uploadVideoToYouTube(uploadMeta, latestVideo);
 
     console.log('\n================================================================');
     console.log('🎉 SUCCESS! YOUR TEST VIDEO IS LIVE ON YOUTUBE!');

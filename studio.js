@@ -39,6 +39,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // Voice Engine Controls
   const voiceSelect = document.getElementById('voiceSelect');
   const testVoiceBtn = document.getElementById('testVoiceBtn');
+  const micToggleBtn = document.getElementById('micToggleBtn');
+  const micBtnIcon = document.getElementById('micBtnIcon');
+  const micBtnText = document.getElementById('micBtnText');
+  const uploadVoiceBtn = document.getElementById('uploadVoiceBtn');
+  const customVoiceFileInput = document.getElementById('customVoiceFileInput');
+  const voiceStatusIndicator = document.getElementById('voiceStatusIndicator');
+  const voiceStatusText = document.getElementById('voiceStatusText');
 
   // Custom Topic Elements
   const customTopicInput = document.getElementById('customTopicInput');
@@ -109,29 +116,29 @@ document.addEventListener('DOMContentLoaded', () => {
   // 7-Day Content Rotation Schedules for All Languages
   const ROTATION_SCHEDULES = {
     te: [
-      { day: 'Sunday', category: 'shorts', episodeId: 'te_short_numbers_telugu', desc: '🎈 1 నుండి 5 వరకు సంఖ్యల సరదా!' },
+      { day: 'Sunday', category: 'shorts', episodeId: 'te_short_cute_dino', desc: '🦖 బుజ్జి డైనోసార్ సరదా డ్యాన్స్!' },
       { day: 'Monday', category: 'shorts', episodeId: 'te_short_animal_quiz_1', desc: '🦁 జంతువుల శబ్దాల క్విజ్ (సింహం గర్జన)' },
       { day: 'Tuesday', category: 'stories', episodeId: 'te_story_rabbit_tortoise', desc: '🐢 కుందేలు మరియు తాబేలు పరుగు పందెం' },
       { day: 'Wednesday', category: 'rhymes', episodeId: 'te_rhyme_chitti_chilakamma', desc: '🦜 చిట్టి చిలకమ్మా అమ్మ కొట్టిందా?' },
-      { day: 'Thursday', category: 'shorts', episodeId: 'te_short_telugu_varnamala', desc: '🍎 తెలుగు అక్షరమాల: "అ" అరటిపండు, "ఆ" ఆవు' },
+      { day: 'Thursday', category: 'shorts', episodeId: 'te_short_baby_elephant', desc: '🐘 బుజ్జి ఏనుగు బాబు సరదా నీటి బుడగలు!' },
       { day: 'Friday', category: 'stories', episodeId: 'te_story_thirsty_crow', desc: '🐦 దాహం వేసిన తెలివైన కాకి కథ' },
       { day: 'Saturday', category: 'rhymes', episodeId: 'te_rhyme_chandamama_raave', desc: '🌙 చందమామ రావే జాబిల్లి రావే' }
     ],
     hi: [
-      { day: 'Sunday', category: 'shorts', episodeId: 'hi_short_numbers_hindi', desc: '🎈 1 से 5 तक गिनती का मज़ा!' },
+      { day: 'Sunday', category: 'shorts', episodeId: 'hi_short_cute_dino', desc: '🦖 नन्हे डायनासोर का प्यारा डांस!' },
       { day: 'Monday', category: 'shorts', episodeId: 'hi_short_animal_quiz_1', desc: '🦁 जंगली जानवरों की आवाज़ें (शेर की दहाड़)' },
       { day: 'Tuesday', category: 'stories', episodeId: 'hi_story_rabbit_tortoise', desc: '🐢 कछुआ और खरगोश की दौड़' },
       { day: 'Wednesday', category: 'rhymes', episodeId: 'hi_rhyme_machli_jal', desc: '🐟 मछली जल की रानी है, जीवन उसका पानी है' },
-      { day: 'Thursday', category: 'shorts', episodeId: 'hi_short_hindi_varnamala', desc: '🍎 हिंदी वर्णमाला: अ से अनार, आ से आम' },
+      { day: 'Thursday', category: 'shorts', episodeId: 'hi_short_baby_elephant', desc: '🐘 हाथी राजा और जादुई पानी के बुलबुले!' },
       { day: 'Friday', category: 'stories', episodeId: 'hi_story_thirsty_crow', desc: '🐦 चतुर प्यासा कौआ और मटका' },
       { day: 'Saturday', category: 'rhymes', episodeId: 'hi_rhyme_lakdi_ki_kathi', desc: '🪵 लकड़ी की काठी, काठी पे घोड़ा' }
     ],
     en: [
-      { day: 'Sunday', category: 'shorts', episodeId: 'short_numbers_safari', desc: '🎈 Number Safari: Count 1 to 5 with Balloons!' },
+      { day: 'Sunday', category: 'shorts', episodeId: 'short_cute_dino', desc: '🦖 Baby Dino\'s Stomp & Roar Dance Adventure!' },
       { day: 'Monday', category: 'shorts', episodeId: 'short_animal_quiz_1', desc: '🦁 Guess the Animal Sound: Who says ROAR?' },
       { day: 'Tuesday', category: 'stories', episodeId: 'story_moon_lost_star', desc: '🌙 Bedtime Story: The Moon and the Lost Star' },
       { day: 'Wednesday', category: 'rhymes', episodeId: 'rhyme_twinkle_twinkle', desc: '⭐ Sing-Along: Twinkle Twinkle Little Star' },
-      { day: 'Thursday', category: 'shorts', episodeId: 'short_abc_magic', desc: '🍎 ABC Phonics: Letter A is for Apple' },
+      { day: 'Thursday', category: 'shorts', episodeId: 'short_baby_elephant', desc: '🐘 Jumbo the Baby Elephant: Rainbow Bubble Fun!' },
       { day: 'Friday', category: 'stories', episodeId: 'story_brave_bunny', desc: '🐰 Moral Tale: Barnaby the Brave Little Bunny' },
       { day: 'Saturday', category: 'rhymes', episodeId: 'rhyme_wheels_on_bus', desc: '🚌 Sing-Along: The Wheels on the Bus' }
     ],
@@ -276,16 +283,68 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (voiceSelect) {
-      voiceSelect.addEventListener('change', (e) => {
+      voiceSelect.addEventListener('change', async (e) => {
         const val = e.target.value;
-        if (val === 'online_hd') {
-          audioEngine.setVoiceMode('online_hd');
-        } else if (val === 'auto') {
-          audioEngine.setVoiceMode(currentLang === 'en' ? 'system' : 'online_hd');
-          audioEngine.setLanguage(currentLang);
+        if (val === 'microphone') {
+          await toggleMicrophone(true);
+        } else if (val === 'custom_audio') {
+          if (!audioEngine.customAudioBuffer) {
+            if (customVoiceFileInput) customVoiceFileInput.click();
+          } else {
+            audioEngine.setVoiceMode('custom_audio');
+            updateVoiceStatusUI('custom_audio');
+          }
         } else {
-          audioEngine.setVoiceMode('system_forced');
-          audioEngine.setVoiceByName(val);
+          if (audioEngine.isMicActive) {
+            audioEngine.disableMicrophone();
+            updateMicButtonUI(false);
+          }
+          if (val === 'online_hd') {
+            audioEngine.setVoiceMode('online_hd');
+            updateVoiceStatusUI('online_hd');
+          } else if (val === 'auto') {
+            audioEngine.setVoiceMode(currentLang === 'en' ? 'system' : 'online_hd');
+            audioEngine.setLanguage(currentLang);
+            updateVoiceStatusUI('auto');
+          } else {
+            audioEngine.setVoiceMode('system_forced');
+            audioEngine.setVoiceByName(val);
+            updateVoiceStatusUI('system', val);
+          }
+        }
+      });
+    }
+
+    // Microphone toggle button
+    if (micToggleBtn) {
+      micToggleBtn.addEventListener('click', async () => {
+        const shouldEnable = !audioEngine.isMicActive;
+        await toggleMicrophone(shouldEnable);
+      });
+    }
+
+    // Custom voice audio file upload
+    if (uploadVoiceBtn && customVoiceFileInput) {
+      uploadVoiceBtn.addEventListener('click', () => {
+        customVoiceFileInput.click();
+      });
+
+      customVoiceFileInput.addEventListener('change', async (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+        uploadVoiceBtn.textContent = '⏳ Loading...';
+        const res = await audioEngine.loadCustomAudioFile(file);
+        uploadVoiceBtn.textContent = '📁 Upload Voice';
+        if (res.success) {
+          if (audioEngine.isMicActive) {
+            audioEngine.disableMicrophone();
+            updateMicButtonUI(false);
+          }
+          if (voiceSelect) voiceSelect.value = 'custom_audio';
+          updateVoiceStatusUI('custom_audio', `${file.name} (${res.duration.toFixed(1)}s)`);
+          alert(`✅ Custom voice audio loaded: "${file.name}"! It will play during your video recording.`);
+        } else {
+          alert(`❌ Failed to load audio file: ${res.error}`);
         }
       });
     }
@@ -293,9 +352,65 @@ document.addEventListener('DOMContentLoaded', () => {
     if (testVoiceBtn) {
       testVoiceBtn.addEventListener('click', () => {
         audioEngine.resume();
+        if (audioEngine.voiceMode === 'microphone') {
+          alert("🎙️ Microphone is active! Speak into your microphone and you will hear your voice mixed with music.");
+          return;
+        }
         const testText = (LANG_META[currentLang] && LANG_META[currentLang].greeting) || 'Hello Little Explorers! Welcome to TinyToons Studio!';
         audioEngine.speak(testText, null, null);
       });
+    }
+  }
+
+  async function toggleMicrophone(enable) {
+    if (enable) {
+      if (micBtnText) micBtnText.textContent = 'Connecting...';
+      const res = await audioEngine.enableMicrophone();
+      if (res.success) {
+        updateMicButtonUI(true);
+        if (voiceSelect) voiceSelect.value = 'microphone';
+        updateVoiceStatusUI('microphone');
+      } else {
+        updateMicButtonUI(false);
+        alert(`🎙️ Microphone Permission Needed: Please allow microphone access in your browser to record with your own voice.\n\nError: ${res.error}`);
+      }
+    } else {
+      audioEngine.disableMicrophone();
+      updateMicButtonUI(false);
+      if (voiceSelect) voiceSelect.value = 'online_hd';
+      audioEngine.setVoiceMode('online_hd');
+      updateVoiceStatusUI('online_hd');
+    }
+  }
+
+  function updateMicButtonUI(isActive) {
+    if (!micToggleBtn) return;
+    if (isActive) {
+      micToggleBtn.classList.add('active');
+      if (micBtnIcon) micBtnIcon.textContent = '🔴';
+      if (micBtnText) micBtnText.textContent = 'Mic Active';
+    } else {
+      micToggleBtn.classList.remove('active');
+      if (micBtnIcon) micBtnIcon.textContent = '🎙️';
+      if (micBtnText) micBtnText.textContent = 'Use My Voice';
+    }
+  }
+
+  function updateVoiceStatusUI(mode, extra) {
+    if (!voiceStatusIndicator || !voiceStatusText) return;
+    const langName = (LANG_META[currentLang] && LANG_META[currentLang].name) || currentLang.toUpperCase();
+    if (mode === 'microphone') {
+      voiceStatusIndicator.className = 'voice-status-indicator mic-active';
+      voiceStatusText.innerHTML = `🎙️ <strong>Live Microphone Active:</strong> Speak directly into your mic while the video plays and records!`;
+    } else if (mode === 'custom_audio') {
+      voiceStatusIndicator.className = 'voice-status-indicator';
+      voiceStatusText.innerHTML = `📁 <strong>Custom Voice File Loaded:</strong> ${extra || 'Audio file ready to mix into video!'}`;
+    } else if (mode === 'online_hd') {
+      voiceStatusIndicator.className = 'voice-status-indicator';
+      voiceStatusText.innerHTML = `✨ Voice: <strong>Google Natural ${langName} HD</strong> (Click "Use My Voice" to speak with your own voice!)`;
+    } else {
+      voiceStatusIndicator.className = 'voice-status-indicator';
+      voiceStatusText.innerHTML = `🗣️ Voice: <strong>${extra || 'System Voice'}</strong>`;
     }
   }
 
@@ -309,19 +424,37 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Recommended Natural HD Voice (Google TTS)
     const hdOpt = document.createElement('option');
     hdOpt.value = 'online_hd';
-    hdOpt.textContent = `✨ Google Natural ${langName} (HD Voice) [Recommended]`;
-    if (audioEngine.voiceMode === 'online_hd' || currentLang !== 'en') {
+    hdOpt.textContent = `✨ Google Natural ${langName} HD Voice [Recommended]`;
+    if (audioEngine.voiceMode === 'online_hd' || (!audioEngine.isMicActive && audioEngine.voiceMode !== 'custom_audio')) {
       hdOpt.selected = true;
     }
     voiceSelect.appendChild(hdOpt);
 
-    // 2. Auto Detect Option
+    // 2. Microphone Option
+    const micOpt = document.createElement('option');
+    micOpt.value = 'microphone';
+    micOpt.textContent = `🎙️ Live Microphone (Use My Own Real Voice!)`;
+    if (audioEngine.isMicActive || audioEngine.voiceMode === 'microphone') {
+      micOpt.selected = true;
+    }
+    voiceSelect.appendChild(micOpt);
+
+    // 3. Custom Audio File Option
+    const customOpt = document.createElement('option');
+    customOpt.value = 'custom_audio';
+    customOpt.textContent = `📁 Custom Audio File (My Recorded Voice)`;
+    if (audioEngine.voiceMode === 'custom_audio') {
+      customOpt.selected = true;
+    }
+    voiceSelect.appendChild(customOpt);
+
+    // 4. Auto Detect Option
     const autoOpt = document.createElement('option');
     autoOpt.value = 'auto';
     autoOpt.textContent = `🔄 Auto Detect System Voice (${langName})`;
     voiceSelect.appendChild(autoOpt);
 
-    // 3. System installed voices
+    // 5. System installed voices
     voices.forEach((v) => {
       const opt = document.createElement('option');
       opt.value = v.name;

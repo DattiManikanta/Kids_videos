@@ -17,11 +17,15 @@ class KidsAudioEngine {
     this.bgmTimer = null;
     this.synth = window.speechSynthesis || null;
     this.preferredLang = 'te'; // Default to Telugu
-    this.availableVoices = [];
-    this.voiceMode = 'online_hd'; // 'online_hd' (Google Telugu HD Audio) or 'system'
+    this.voiceMode = 'online_hd'; // 'online_hd', 'system', 'microphone', 'custom_audio'
     this.currentAudioSource = null;
     this.voicePitch = 1.35; // Cheerful playful cartoon pitch
     this.voiceRate = 0.95;  // Clear, friendly pace for kids
+    this.micStream = null;
+    this.micSource = null;
+    this.micGain = null;
+    this.customAudioBuffer = null;
+    this.isMicActive = false;
   }
 
   init() {
@@ -105,6 +109,73 @@ class KidsAudioEngine {
     const found = voices.find(v => v.name === name);
     if (found) {
       this.selectedVoice = found;
+    }
+  }
+
+  setVoiceMode(mode) {
+    this.voiceMode = mode;
+    if (mode !== 'microphone' && this.isMicActive) {
+      this.disableMicrophone();
+    }
+  }
+
+  setVoicePitch(pitch) {
+    this.voicePitch = Math.max(0.6, Math.min(2.0, parseFloat(pitch) || 1.0));
+  }
+
+  setVoiceRate(rate) {
+    this.voiceRate = Math.max(0.6, Math.min(1.8, parseFloat(rate) || 1.0));
+  }
+
+  async enableMicrophone() {
+    this.resume();
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ 
+        audio: {
+          echoCancellation: true,
+          noiseSuppression: true,
+          autoGainControl: true
+        } 
+      });
+      this.micStream = stream;
+      this.micSource = this.ctx.createMediaStreamSource(stream);
+      this.micGain = this.ctx.createGain();
+      this.micGain.gain.setValueAtTime(1.15, this.ctx.currentTime); // Crisp clear voice boost
+      this.micSource.connect(this.micGain);
+      this.micGain.connect(this.masterGain);
+      this.isMicActive = true;
+      this.voiceMode = 'microphone';
+      return { success: true, stream };
+    } catch (err) {
+      console.error("Microphone access error:", err);
+      this.isMicActive = false;
+      return { success: false, error: err.message };
+    }
+  }
+
+  disableMicrophone() {
+    if (this.micStream) {
+      this.micStream.getTracks().forEach(t => t.stop());
+      this.micStream = null;
+    }
+    if (this.micSource) {
+      try { this.micSource.disconnect(); } catch (e) {}
+      this.micSource = null;
+    }
+    this.isMicActive = false;
+  }
+
+  async loadCustomAudioFile(file) {
+    this.resume();
+    try {
+      const arrayBuffer = await file.arrayBuffer();
+      const decodedBuffer = await this.ctx.decodeAudioData(arrayBuffer);
+      this.customAudioBuffer = decodedBuffer;
+      this.voiceMode = 'custom_audio';
+      return { success: true, duration: decodedBuffer.duration };
+    } catch (err) {
+      console.error("Error loading custom audio:", err);
+      return { success: false, error: err.message };
     }
   }
 
@@ -343,6 +414,46 @@ class KidsAudioEngine {
     this.resume();
     this.stopSpeech();
 
+    // 1. Microphone Mode: User speaks live into their microphone
+    if (this.voiceMode === 'microphone') {
+      const words = (text || '').trim().split(/\s+/).filter(Boolean).length;
+      const durationMs = Math.max(5000, Math.min(10000, words * 500));
+
+      if (onWordBoundary) {
+        const wordArr = (text || '').split(' ');
+        const stepTime = durationMs / Math.max(wordArr.length, 1);
+        let charOffset = 0;
+        wordArr.forEach((w, idx) => {
+          setTimeout(() => {
+            if (this.voiceMode === 'microphone') {
+              onWordBoundary(charOffset, w.length);
+            }
+          }, idx * stepTime);
+          charOffset += w.length + 1;
+        });
+      }
+
+      this.currentAudioSource = setTimeout(() => {
+        this.currentAudioSource = null;
+        if (onEnd) onEnd();
+      }, durationMs);
+      return;
+    }
+
+    // 2. Custom Uploaded Audio File
+    if (this.voiceMode === 'custom_audio' && this.customAudioBuffer) {
+      const source = this.ctx.createBufferSource();
+      source.buffer = this.customAudioBuffer;
+      source.connect(this.masterGain);
+      this.currentAudioSource = source;
+      source.onended = () => {
+        this.currentAudioSource = null;
+        if (onEnd) onEnd();
+      };
+      source.start(0);
+      return;
+    }
+
     const langCodes = {
       te: 'te-IN',
       hi: 'hi-IN',
@@ -452,7 +563,10 @@ class KidsAudioEngine {
     if (this.synth) {
       this.synth.cancel();
     }
-    if (this.currentAudioSource) {
+    if (typeof this.currentAudioSource === 'number') {
+      clearTimeout(this.currentAudioSource);
+      this.currentAudioSource = null;
+    } else if (this.currentAudioSource) {
       try { this.currentAudioSource.stop(); } catch(e) {}
       this.currentAudioSource = null;
     }
