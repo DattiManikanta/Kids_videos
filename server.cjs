@@ -70,6 +70,18 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  if (pathname === '/api/clone-voice/status' && req.method === 'GET') {
+    const voiceCloner = require('./voice_cloner.js');
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify(voiceCloner.getVoiceStatus()));
+    return;
+  }
+
+  if (pathname === '/api/clone-voice/setup' && req.method === 'POST') {
+    handleCloneVoiceSetup(req, res);
+    return;
+  }
+
   if (pathname === '/api/tts' && req.method === 'GET') {
     handleTTS(req, res, parsedUrl);
     return;
@@ -330,6 +342,7 @@ function handleYouTubeUpload(req, res) {
 function handleTTS(req, res, parsedUrl) {
   const text = parsedUrl.searchParams.get('text') || '';
   const lang = parsedUrl.searchParams.get('lang') || 'te';
+  const voice = parsedUrl.searchParams.get('voice') || '';
 
   if (!text) {
     res.writeHead(400, { 'Content-Type': 'application/json' });
@@ -337,7 +350,32 @@ function handleTTS(req, res, parsedUrl) {
     return;
   }
 
-  // Stream high-quality audio directly from Google TTS for Telugu/any language
+  // If cloned voice requested
+  if (voice === 'cloned') {
+    const voiceCloner = require('./voice_cloner.js');
+    const status = voiceCloner.getVoiceStatus();
+    if (status.isCloned) {
+      voiceCloner.synthesizeClonedSpeech(text)
+        .then(result => {
+          res.writeHead(200, {
+            'Content-Type': 'audio/mpeg',
+            'Access-Control-Allow-Origin': '*',
+            'X-Voice-Engine': 'ElevenLabs-Cloned'
+          });
+          res.end(result.audioBuffer);
+        })
+        .catch(err => {
+          console.warn("Cloned voice synthesis failed, falling back to Google HD:", err.message);
+          serveGoogleTTS(text, lang, res, err.message);
+        });
+      return;
+    }
+  }
+
+  serveGoogleTTS(text, lang, res);
+}
+
+function serveGoogleTTS(text, lang, res, fallbackReason) {
   const targetUrl = `https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=${encodeURIComponent(lang)}&q=${encodeURIComponent(text)}`;
 
   https.get(targetUrl, {
@@ -348,13 +386,56 @@ function handleTTS(req, res, parsedUrl) {
     res.writeHead(ttsRes.statusCode, {
       'Content-Type': 'audio/mpeg',
       'Access-Control-Allow-Origin': '*',
-      'Cache-Control': 'public, max-age=86400'
+      'Cache-Control': 'public, max-age=86400',
+      'X-Voice-Engine': 'Google-HD',
+      'X-Voice-Fallback-Reason': fallbackReason || ''
     });
     ttsRes.pipe(res);
   }).on('error', (err) => {
     console.error("TTS fetch error:", err);
     res.writeHead(500, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ error: err.message }));
+  });
+}
+
+function handleCloneVoiceSetup(req, res) {
+  let body = '';
+  req.on('data', chunk => body += chunk);
+  req.on('end', () => {
+    try {
+      const data = JSON.parse(body);
+      const voiceCloner = require('./voice_cloner.js');
+      const apiKey = (data.apiKey || '').trim();
+      const voiceName = data.voiceName || 'Manikanta Voice';
+      const sampleFile = data.sampleFile || 'user_voice.mp4';
+
+      if (!apiKey) {
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ success: false, error: 'ElevenLabs API key is required.' }));
+        return;
+      }
+
+      voiceCloner.cloneUserVoice(apiKey, sampleFile, voiceName)
+        .then(result => {
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({
+            success: true,
+            voiceId: result.voiceId,
+            voiceName: result.voiceName,
+            message: `Voice cloned successfully! Voice ID: ${result.voiceId}`
+          }));
+        })
+        .catch(err => {
+          res.writeHead(400, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({
+            success: false,
+            error: err.message
+          }));
+        });
+    } catch (e) {
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, error: 'Invalid JSON request' }));
+    }
   });
 }
 

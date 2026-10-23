@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Voice Engine Controls
   const voiceSelect = document.getElementById('voiceSelect');
   const testVoiceBtn = document.getElementById('testVoiceBtn');
+  const cloneVoiceBtn = document.getElementById('cloneVoiceBtn');
   const micToggleBtn = document.getElementById('micToggleBtn');
   const micBtnIcon = document.getElementById('micBtnIcon');
   const micBtnText = document.getElementById('micBtnText');
@@ -46,6 +47,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const customVoiceFileInput = document.getElementById('customVoiceFileInput');
   const voiceStatusIndicator = document.getElementById('voiceStatusIndicator');
   const voiceStatusText = document.getElementById('voiceStatusText');
+  const voiceCloneModal = document.getElementById('voiceCloneModal');
+  const elevenApiKeyInput = document.getElementById('elevenApiKeyInput');
+  const cloneVoiceSubmitBtn = document.getElementById('cloneVoiceSubmitBtn');
+  const closeCloneModalBtn = document.getElementById('closeCloneModalBtn');
+  const cloneStatusAlert = document.getElementById('cloneStatusAlert');
+  let isVoiceCloned = false;
 
   // Custom Topic Elements
   const customTopicInput = document.getElementById('customTopicInput');
@@ -292,7 +299,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (voiceSelect) {
       voiceSelect.addEventListener('change', async (e) => {
         const val = e.target.value;
-        if (val === 'microphone') {
+        if (val === 'cloned') {
+          if (audioEngine.isMicActive) {
+            audioEngine.disableMicrophone();
+            updateMicButtonUI(false);
+          }
+          audioEngine.setVoiceMode('cloned');
+          updateVoiceStatusUI('cloned');
+        } else if (val === 'microphone') {
           await toggleMicrophone(true);
         } else if (val === 'user_voice_file') {
           if (audioEngine.isMicActive) {
@@ -330,6 +344,68 @@ document.addEventListener('DOMContentLoaded', () => {
             updateVoiceStatusUI('system', val);
           }
         }
+      });
+    }
+
+    // AI Voice Clone Button & Modal Handlers
+    if (cloneVoiceBtn && voiceCloneModal) {
+      cloneVoiceBtn.addEventListener('click', () => {
+        voiceCloneModal.style.display = 'flex';
+        checkClonedVoiceStatus();
+      });
+    }
+
+    if (closeCloneModalBtn && voiceCloneModal) {
+      closeCloneModalBtn.addEventListener('click', () => {
+        voiceCloneModal.style.display = 'none';
+      });
+    }
+
+    if (cloneVoiceSubmitBtn) {
+      cloneVoiceSubmitBtn.addEventListener('click', () => {
+        const apiKey = (elevenApiKeyInput.value || '').trim();
+        if (!apiKey) {
+          alert('Please enter your ElevenLabs API key from elevenlabs.io to clone your voice.');
+          return;
+        }
+
+        cloneStatusAlert.style.display = 'block';
+        cloneStatusAlert.className = 'status-banner loading';
+        cloneStatusAlert.innerHTML = '⏳ Uploading <strong>user_voice.mp4</strong> to ElevenLabs and cloning your voice...';
+        cloneVoiceSubmitBtn.disabled = true;
+
+        fetch('/api/clone-voice/setup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            apiKey: apiKey,
+            sampleFile: 'user_voice.mp4',
+            voiceName: 'Manikanta Voice'
+          })
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            isVoiceCloned = true;
+            cloneStatusAlert.className = 'status-banner success';
+            cloneStatusAlert.innerHTML = `🎉 <strong>Voice Cloned Successfully!</strong><br>Voice ID: <code>${data.voiceId}</code><br>All stories & riddles can now be synthesized in your voice!`;
+            audioEngine.setVoiceMode('cloned');
+            populateVoiceSelect();
+            updateVoiceStatusUI('cloned');
+            setTimeout(() => {
+              voiceCloneModal.style.display = 'none';
+            }, 2500);
+          } else {
+            throw new Error(data.error || 'Failed to clone voice');
+          }
+        })
+        .catch(err => {
+          cloneStatusAlert.className = 'status-banner notice';
+          cloneStatusAlert.innerHTML = `⚠️ <strong>Voice Clone Error:</strong> ${err.message}`;
+        })
+        .finally(() => {
+          cloneVoiceSubmitBtn.disabled = false;
+        });
       });
     }
 
@@ -378,6 +454,32 @@ document.addEventListener('DOMContentLoaded', () => {
         audioEngine.speak(testText, null, null);
       });
     }
+
+    // Check cloned voice status on initial load
+    checkClonedVoiceStatus();
+  }
+
+  function checkClonedVoiceStatus() {
+    fetch('/api/clone-voice/status')
+      .then(res => res.json())
+      .then(data => {
+        if (data.isCloned) {
+          isVoiceCloned = true;
+          if (cloneStatusAlert) {
+            cloneStatusAlert.style.display = 'block';
+            cloneStatusAlert.className = 'status-banner success';
+            cloneStatusAlert.innerHTML = `✅ <strong>Your Voice is Cloned!</strong> (ID: <code>${data.voiceId}</code>)<br>All stories will be spoken in your voice.`;
+          }
+          if (audioEngine.voiceMode !== 'microphone' && audioEngine.voiceMode !== 'custom_audio') {
+            audioEngine.setVoiceMode('cloned');
+          }
+          populateVoiceSelect();
+          if (audioEngine.voiceMode === 'cloned') {
+            updateVoiceStatusUI('cloned');
+          }
+        }
+      })
+      .catch(() => {});
   }
 
   async function toggleMicrophone(enable) {
@@ -417,7 +519,10 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateVoiceStatusUI(mode, extra) {
     if (!voiceStatusIndicator || !voiceStatusText) return;
     const langName = (LANG_META[currentLang] && LANG_META[currentLang].name) || currentLang.toUpperCase();
-    if (mode === 'microphone') {
+    if (mode === 'cloned') {
+      voiceStatusIndicator.className = 'voice-status-indicator';
+      voiceStatusText.innerHTML = `🧬 <strong>AI Voice Clone Active:</strong> All stories & riddles will be spoken in your exact voice!`;
+    } else if (mode === 'microphone') {
       voiceStatusIndicator.className = 'voice-status-indicator mic-active';
       voiceStatusText.innerHTML = `🎙️ <strong>Live Microphone Active:</strong> Speak directly into your mic while the video plays and records!`;
     } else if (mode === 'custom_audio') {
@@ -425,7 +530,7 @@ document.addEventListener('DOMContentLoaded', () => {
       voiceStatusText.innerHTML = `📁 <strong>Custom Voice File Loaded:</strong> ${extra || 'Audio file ready to mix into video!'}`;
     } else if (mode === 'online_hd') {
       voiceStatusIndicator.className = 'voice-status-indicator';
-      voiceStatusText.innerHTML = `✨ Voice: <strong>Google Natural ${langName} HD</strong> (Click "Use My Voice" to speak with your own voice!)`;
+      voiceStatusText.innerHTML = `✨ Voice: <strong>Google Natural ${langName} HD</strong> (Click "Clone My Voice" or "Use My Voice" to speak with your voice!)`;
     } else {
       voiceStatusIndicator.className = 'voice-status-indicator';
       voiceStatusText.innerHTML = `🗣️ Voice: <strong>${extra || 'System Voice'}</strong>`;
@@ -439,7 +544,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const langName = (LANG_META[currentLang] && LANG_META[currentLang].name) || currentLang.toUpperCase();
 
-    // 1. Recommended Natural HD Voice (Google TTS)
+    // 1. Cloned Voice Option (if cloned)
+    if (isVoiceCloned) {
+      const cloneOpt = document.createElement('option');
+      cloneOpt.value = 'cloned';
+      cloneOpt.textContent = `🧬 AI Cloned Voice (Manikanta's Exact Voice) [Active]`;
+      if (audioEngine.voiceMode === 'cloned') {
+        cloneOpt.selected = true;
+      }
+      voiceSelect.appendChild(cloneOpt);
+    }
+
+    // 2. Recommended Natural HD Voice (Google TTS)
     const hdOpt = document.createElement('option');
     hdOpt.value = 'online_hd';
     hdOpt.textContent = `✨ Google Natural ${langName} HD Voice [Recommended]`;
@@ -448,16 +564,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     voiceSelect.appendChild(hdOpt);
 
-    // 2. User's WhatsApp Voice Recording (user_voice.mp4)
+    // 3. User's WhatsApp Voice Recording (user_voice.mp4)
     const userVoiceOpt = document.createElement('option');
     userVoiceOpt.value = 'user_voice_file';
-    userVoiceOpt.textContent = `🎤 My WhatsApp Voice: "Hello! ఎలా ఉన్నావు? బాగున్నావా?" [Your Voice]`;
+    userVoiceOpt.textContent = `🎤 My WhatsApp Voice: "Hello! ఎలా ఉన్నావు? బాగున్నావా?" [Sample]`;
     if (audioEngine.voiceMode === 'custom_audio') {
       userVoiceOpt.selected = true;
     }
     voiceSelect.appendChild(userVoiceOpt);
 
-    // 3. Microphone Option
+    // 4. Microphone Option
     const micOpt = document.createElement('option');
     micOpt.value = 'microphone';
     micOpt.textContent = `🎙️ Live Microphone (Use My Own Real Voice!)`;
@@ -466,10 +582,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     voiceSelect.appendChild(micOpt);
 
-    // 3. Custom Audio File Option
+    // 5. Custom Audio File Option
     const customOpt = document.createElement('option');
     customOpt.value = 'custom_audio';
-    customOpt.textContent = `📁 Custom Audio File (My Recorded Voice)`;
+    customOpt.textContent = `📁 Custom Audio File (Upload File)`;
     if (audioEngine.voiceMode === 'custom_audio') {
       customOpt.selected = true;
     }

@@ -481,7 +481,7 @@ class KidsAudioEngine {
     const targetCode = langCodes[this.preferredLang] || 'en-US';
     const hasNativeVoice = this.selectedVoice && this.selectedVoice.lang.toLowerCase().startsWith(this.preferredLang);
 
-    if (this.voiceMode === 'online_hd' || (this.preferredLang !== 'en' && !hasNativeVoice && this.voiceMode !== 'system_forced')) {
+    if (this.voiceMode === 'cloned' || this.voiceMode === 'online_hd' || (this.preferredLang !== 'en' && !hasNativeVoice && this.voiceMode !== 'system_forced')) {
       this.playOnlineTTS(text, this.preferredLang, onWordBoundary, onEnd);
       return;
     }
@@ -530,7 +530,8 @@ class KidsAudioEngine {
     this.stopSpeech();
 
     try {
-      const url = `/api/tts?lang=${encodeURIComponent(lang)}&text=${encodeURIComponent(text)}`;
+      const voiceParam = this.voiceMode === 'cloned' ? '&voice=cloned' : '';
+      const url = `/api/tts?lang=${encodeURIComponent(lang)}&text=${encodeURIComponent(text)}${voiceParam}`;
       const res = await fetch(url);
       if (!res.ok) throw new Error("TTS status: " + res.status);
       const arrayBuffer = await res.arrayBuffer();

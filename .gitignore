@@ -1,6 +1,8 @@
 # Sensitive OAuth Credentials & Tokens
 client_secret.json
 token.json
+voice_cloner_config.json
+.env
 
 # Large video output exports
 output/*.webm
